@@ -5,7 +5,10 @@ const HeaderContainer = styled.div`
   width: 100%;
   height: 100px;
   background-color: lightblue; 
-
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 `
 
 const Header = () => {

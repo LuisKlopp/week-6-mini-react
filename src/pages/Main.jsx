@@ -2,6 +2,8 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
+import MUIButton from "../components/Button";
+// import Button from '@mui/material/Button';
 
 const Main = () => {
 
@@ -9,9 +11,10 @@ const Main = () => {
   return (
     <>
       <GlobalStyle/>
-      <StWrapper>
-       <Header />
-      </StWrapper>
+      {/* <StWrapper> */}
+       <Header></Header>
+      {/* </StWrapper> */}
+       <MUIButton/>
     </>
   );
 };
@@ -30,8 +33,9 @@ const GlobalStyle = createGlobalStyle`
 
 const StWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 10vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  text-align: center;
 `;
