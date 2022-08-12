@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-
+import Header from "../components/Header";
 
 const Main = () => {
 
@@ -10,7 +10,7 @@ const Main = () => {
     <>
       <GlobalStyle/>
       <StWrapper>
-        Main Page
+       <Header />
       </StWrapper>
     </>
   );

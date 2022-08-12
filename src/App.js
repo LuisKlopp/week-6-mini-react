@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Main from "./components/Main";
+import Main from "./pages/Main";
 import { Routes, Route, Link, Redirect } from 'react-router-dom'
 
 
