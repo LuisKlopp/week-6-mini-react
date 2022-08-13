@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
-import dotImg from '../img/dotdot.jpg'
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
 
@@ -25,15 +24,7 @@ const Header2 = () => {
           <Button variant="contained" color="success" onClick={()=>{navigate('/login')}}>LogIn</Button>
       </HeaderSideDiv>
       </LogoPosition>
-      </HeaderContainer>
-      
-      {/* Introuduce */}
-      <IntroContainer>
-        <IntroBox>
-          상세 페이지
-        </IntroBox>
-      </IntroContainer>
-
+    </HeaderContainer>
       {/* Filter */}
 
   </>
@@ -78,18 +69,18 @@ const HeaderSideDiv = styled.div`
   margin-right: 20px;
   margin-left: 30px;
 `
-const IntroContainer = styled.div`
-  margin-top: 50px;
-  width: 100%;
-  height: 150px;
-  background-image: url(${dotImg});
-  position: relative;
-`
-const IntroBox = styled.div`
-  font-family: 'Cafe24Ohsquareair';
-  font-size: 30px;
-  line-height: 50px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-`
+// const IntroContainer = styled.div`
+//   margin-top: 50px;
+//   width: 100%;
+//   height: 150px;
+//   background-image: url(${dotImg});
+//   position: relative;
+// `
+// const IntroBox = styled.div`
+//   font-family: 'Cafe24Ohsquareair';
+//   font-size: 30px;
+//   line-height: 50px;
+//   position: absolute;
+//   top: 50px;
+//   left: 50px;
+// `
