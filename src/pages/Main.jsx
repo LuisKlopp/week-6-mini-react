@@ -4,7 +4,6 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import MUIButton from "../components/Button";
 import StuffCard from "../components/StuffCard";
-// import data from "../components/test";
 import { Outlet } from "react-router-dom";
 import data from "../components/CardTest";
 

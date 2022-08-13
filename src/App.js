@@ -18,6 +18,7 @@ function App() {
       </Route>
       <Route path="/Detail" element={<Detail/>}/>
       <Route path="/post" element={<Post/>}/>
+
       {/* <Route path="/detail/:id" element={<Detail/>}/> */}
 
     </Routes>
