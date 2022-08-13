@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useReducer} from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -31,17 +31,40 @@ import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
+const reducer = (state, action) => {
+  return {
+    ...state,
+    [action.name]: action.value,
+  }
+}
+
 const SignUp = () => {
   const navigate = useNavigate();
 
+  const [state, setState] = useReducer(reducer, {
+    username: "",
+    nickname: "",
+    password: "",
+  });
+
+  const { username, nickname, password } = state;
+
+  const onChange = (e) => {
+    setState(e.target);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const userInfo = {
+      username,
+      nickname,
+      password,
+    }
+    console.log(userInfo)
+
   };
+
+  
 
   return (
     <SignUpContainer>
@@ -91,10 +114,11 @@ const SignUp = () => {
                     margin="normal"
                     required
                     // fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
+                    id="username"
+                    label="ID"
+                    name="username"
+                    autoComplete="username"
+                    onChange={onChange}
                     autoFocus
                   />
                   <Button
@@ -114,6 +138,7 @@ const SignUp = () => {
                   label="Nickname"
                   name="nickname"
                   autoComplete="nickname"
+                  onChange={onChange}
                   autoFocus
                   />
                   <Button
@@ -131,16 +156,17 @@ const SignUp = () => {
                   label="Password"
                   type="password"
                   id="password"
+                  onChange={onChange}
                   autoComplete="current-password"
                 />
                   <TextField
                   margin="normal"
                   required
                   fullWidth
-                  name="password"
+                  name="c-password"
                   label="PasswordCheck"
                   type="password"
-                  id="password"
+                  id="c-password"
                   autoComplete="current-password"
                 />
   
