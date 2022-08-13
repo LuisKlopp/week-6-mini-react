@@ -37,6 +37,7 @@ const Detail = () => {
               <StSpan_1>title</StSpan_1>
               <StSpan>content</StSpan>
               <StSpan_1>content</StSpan_1>
+              <StSpan style={{marginTop:'50px'}}>Price</StSpan>
               
             </StContent>
       

@@ -21,7 +21,7 @@ const Comment = () => {
     <Box sx={{width: 350,maxWidth: '100%',}}>
       <TextField fullWidth label="comment" id="fullWidth"/>
     </Box>
-    <MUIButton style={{height:'30px'}}></MUIButton>
+    <MUIButton></MUIButton>
     </StBox2>
     </>
   )
