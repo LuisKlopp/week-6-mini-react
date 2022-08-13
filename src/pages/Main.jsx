@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import MUIButton from "../components/Button";
 import StuffCard from "../components/StuffCard";
+import data from "../components/test";
 // import Button from '@mui/material/Button';
 
 const Main = () => {
@@ -13,10 +14,9 @@ const Main = () => {
       <Header></Header>
       {/* <MUIButton/> */}
       <StList>
-        <StuffCard/>
-        <StuffCard/>
-        <StuffCard/>
-        <StuffCard/>
+        {data.map((stuff, i)=> {
+          return <StuffCard stuff={stuff} key={i}/>
+        })}
       </StList>
     </>
   );
