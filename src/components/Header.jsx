@@ -8,14 +8,15 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <>
       {/* Header */}
     <HeaderContainer>
       <LogoPosition>
-      <LogoFont>🥕당근나라</LogoFont>
+          <LogoFont onClick={() => { navigate('/') }}>🥕당근나라</LogoFont>
       <HeaderSideDiv>
-          <Input defaultValue="Hello world" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
+          <Input defaultValue="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
           <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button>
           <Button variant="contained" color="success" ><Link to={'login'}>LogIn</Link></Button>
       </HeaderSideDiv>
@@ -64,6 +65,7 @@ const LogoFont = styled.p`
   font-family:'Cafe24Ssurround' ;
   font-size: 36px;
   margin-left: 30px;
+  cursor: pointer;
   `
 const HeaderSideDiv = styled.div`
   margin-top: 40px;
@@ -89,7 +91,6 @@ const IntroBox = styled.div`
 const FilterContainer = styled.div`
   width: 100%;
   height: 70px;
-  /* background-color: beige; */
   margin-top: 30px;
   display: flex;
   justify-content: center;
