@@ -53,9 +53,7 @@ const Detail = () => {
               <StSpan_1>title</StSpan_1>
               <StSpan>content</StSpan>
               <StSpan_1>content</StSpan_1>
-              
-            </StContent>
-      
+                    
       <Comment></Comment>
       </StWrapper>
     </>

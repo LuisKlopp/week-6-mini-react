@@ -10,11 +10,17 @@ import TextField from '@mui/material/TextField';
 
 const Post = () => {
   const navigate = useNavigate();
-  const [value, setValue] = React.useState('title');
+  const [title, setTitle] = React.useState('title');
   const [content, setContent] = React.useState('content');
   const [price, setPrice] = React.useState('30,000원');
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChangeTitle = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleChangeContent = (event) => {
+    setContent(event.target.value);
+  };
+  const handleChangePrice = (event) => {
+    setPrice(event.target.value);
   };
   return (
     <>
@@ -51,8 +57,8 @@ const Post = () => {
             // label=""
             multiline
             maxRows={4}
-            value={value}
-              onChange={handleChange}
+            value={title}
+              onChange={handleChangeTitle}
               sx={{mt:2, ml:3}}
           >title</TextField>
             <StSpan>Content</StSpan>
@@ -62,7 +68,7 @@ const Post = () => {
             multiline
             maxRows={4}
             value={content}
-            onChange={handleChange}
+            onChange={handleChangeContent}
             sx={{mt:2, ml:3}}
           >content</TextField>
           </StContent>
@@ -77,7 +83,7 @@ const Post = () => {
               multiline
               maxRows={4}
               value={price}
-              onChange={handleChange}
+              onChange={handleChangePrice}
               sx={{mt:3, ml:3}}
               />
             </StPrice>
