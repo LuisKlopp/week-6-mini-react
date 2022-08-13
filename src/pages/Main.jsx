@@ -6,6 +6,8 @@ import MUIButton from "../components/Button";
 import StuffCard from "../components/StuffCard";
 import data from "../components/test";
 import { Outlet } from "react-router-dom";
+import data from "../components/CardTest";
+
 // import Button from '@mui/material/Button';
 
 const Main = () => {

@@ -15,6 +15,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import styled_components from 'styled-components';
+import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+
 
 
 // const ExpandMore = styled((props) => {
@@ -31,6 +33,9 @@ import styled_components from 'styled-components';
 export default function StuffCard({stuff, i}) {
   const [expanded, setExpanded] = React.useState(false);
 
+
+  const navigate = useNavigate();
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -39,7 +44,7 @@ export default function StuffCard({stuff, i}) {
     <Card sx={{ maxWidth: 345}} style={{marginTop:"70px", height:"400px"}}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }}  aria-label="recipe">
             R
           </Avatar>
         }
@@ -48,13 +53,18 @@ export default function StuffCard({stuff, i}) {
         //     <MoreVertIcon />
         //   </IconButton>
         // }
+        
         title={stuff.title}
-      />
+      ></CardHeader>
       <CardMedia
         component="img"
         height="194"
         image="https://xenosium.com/wp-content/uploads/1/4212118951.jpg"
         alt="Paella dish"
+        style={{cursor:'pointer'}}
+        onClick={() => {
+          navigate('/detail')
+        }}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -123,3 +133,4 @@ const StPrice = styled_components.div`
   color:white;
   font-size:17px;
 `;
+
