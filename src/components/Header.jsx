@@ -4,6 +4,48 @@ import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import dotImg from '../img/dotdot.jpg'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+
+
+const Header = () => {
+  return (
+    <>
+      {/* Header */}
+    <HeaderContainer>
+      <LogoPosition>
+      <LogoFont>🥕당근나라</LogoFont>
+      <HeaderSideDiv>
+          <Input defaultValue="Hello world" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
+          <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button>
+          <Button variant="contained" color="success" ><Link to={'login'}>LogIn</Link></Button>
+      </HeaderSideDiv>
+      </LogoPosition>
+      </HeaderContainer>
+      
+      {/* Introuduce */}
+      <IntroContainer>
+        <IntroBox>
+          사용하지 않는 물건을 공유 해보세요.<br/>
+          댓글로 소통해보아요.
+        </IntroBox>
+      </IntroContainer>
+
+      {/* Filter */}
+      <FilterContainer>
+        <FilterBox direction="row" spacing={2}>
+          <Button color="error" >All</Button>
+          <Button color="error">전자제품</Button>
+          <Button color="error">생활용품</Button>
+          <Button color="error">운동</Button>
+          <Button color="error">기타</Button>
+        </FilterBox>
+      </FilterContainer>
+  </>
+  )
+}
+
+export default Header
+
 
 const ariaLabel = { 'aria-label': 'description' };
 const HeaderContainer = styled.div`
@@ -63,43 +105,3 @@ const FilterBox = styled.div`
     font-family: 'Cafe24Ohsquareair';
   }
 `
-
-const Header = () => {
-  return (
-    <>
-      {/* Header */}
-    <HeaderContainer>
-      <LogoPosition>
-      <LogoFont>🥕당근나라</LogoFont>
-      <HeaderSideDiv>
-          <Input defaultValue="Hello world" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
-          <Button variant="text" style={{marginLeft:'-50px'}}><ZoomInIcon/></Button>
-          
-          <Button variant="contained" color="success">LogIn</Button>
-      </HeaderSideDiv>
-      </LogoPosition>
-      </HeaderContainer>
-      
-      {/* Introuduce */}
-      <IntroContainer>
-        <IntroBox>
-          사용하지 않는 물건을 공유 해보세요.<br/>
-          댓글로 소통해보아요.
-        </IntroBox>
-      </IntroContainer>
-
-      {/* Filter */}
-      <FilterContainer>
-        <FilterBox direction="row" spacing={2}>
-          <Button color="error" >All</Button>
-          <Button color="error">전자제품</Button>
-          <Button color="error">생활용품</Button>
-          <Button color="error">운동</Button>
-          <Button color="error">기타</Button>
-        </FilterBox>
-      </FilterContainer>
-  </>
-  )
-}
-
-export default Header
