@@ -17,18 +17,18 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import styled_components from 'styled-components';
 
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+//   marginLeft: 'auto',
+//   transition: theme.transitions.create('transform', {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
-export default function StuffCard() {
+export default function StuffCard({stuff, i}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -48,7 +48,7 @@ export default function StuffCard() {
         //     <MoreVertIcon />
         //   </IconButton>
         // }
-        title="Shrimp and Chorizo Paella"
+        title={stuff.title}
       />
       <CardMedia
         component="img"
@@ -58,7 +58,7 @@ export default function StuffCard() {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          컨텐츠내용, 컨텐츠내용, 컨텐츠내용, 컨텐츠내용, 컨텐츠내용, 컨텐츠내용, 컨텐츠내용, 
+          {stuff.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -66,7 +66,7 @@ export default function StuffCard() {
           <FavoriteIcon />
         </IconButton>
         {/* <IconButton aria-label="share"> */}
-          <StPrice>30,000원</StPrice>
+          <StPrice>{stuff.price}</StPrice>
         {/* </IconButton> */}
         {/* <ExpandMore
           expand={expanded}
