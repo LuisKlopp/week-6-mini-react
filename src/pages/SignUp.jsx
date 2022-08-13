@@ -81,17 +81,17 @@ const SignUp = () => {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'success.main' }}>
+              <Avatar sx={{ mt: 5, bgcolor: 'success.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
 
 
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5" sx={{ mt: 2 }}>
                 SIGN UP
               </Typography>
 
 
-              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 5 }}>
                 <label htmlFor="upload-photo">
 
                   <UploadPhoto></UploadPhoto>
