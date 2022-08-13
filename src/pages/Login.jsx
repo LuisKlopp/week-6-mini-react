@@ -15,10 +15,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+
 
 
 
 const Login = () => {
+
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,6 +33,8 @@ const Login = () => {
     });
   };
 
+
+
   return (
 
     <ModalContainer>
@@ -35,7 +42,6 @@ const Login = () => {
         <GlobalStyle />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -44,10 +50,10 @@ const Login = () => {
           <Avatar sx={{ m: 5, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h3">
+          <Typography component="h1" variant="h3" style={{marginTop:'-10px'}}>
             LOG IN
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 15 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 15 }} style={{marginTop:'-1px'}}>
             <TextField
               margin="normal"
               required
@@ -77,11 +83,23 @@ const Login = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 10, mb: 2 , p: 2}}
+              style={{marginTop:'15px'}}
             >
               Log In
             </Button>
+            <Button
+                  // type="submit"
+                  fullWidth
+                  variant="outlined"
+                  sx={{ mt: 1, mb: 2, p: 1.5 }}
+                  onClick={()=>{navigate(-1)}}
+                >
+                  뒤로가기
+                </Button>
             <Grid item>
-                <Link href="signup" variant="body2">
+                <Link variant="body2" onClick={() => {
+                  navigate('/SignUp')
+                }} style={{cursor:'pointer'}}>
                   {"아직 회원이 아니신가요?"}
                 </Link>
             </Grid>
@@ -99,6 +117,7 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `
 const GlobalStyle = createGlobalStyle`
 	body {
@@ -110,9 +129,9 @@ const GlobalStyle = createGlobalStyle`
 const WrapperPosition = styled.div`
   position: absolute;
   z-index: 1;
-  top: 400px;
-  width: 700px;
-  height: 1000px;
+  /* top: 400px; */
+  width: 30%;
+  height: 600px;
   padding: 0 24px;
   background-color: white;
   border: 1px solid black;

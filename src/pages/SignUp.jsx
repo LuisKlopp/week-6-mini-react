@@ -52,7 +52,7 @@ const SignUp = () => {
             <CssBaseline />
             <Box
               sx={{
-                marginTop: 8,
+                marginTop: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -193,8 +193,8 @@ const SignUpContainer = styled.div`
 const WrapperPosition = styled.div`
   position: absolute;
   z-index: 1;
-  top: 400px;
-  width: 700px;
+  top: 10px;
+  width: 600px;
   height: 1000px;
   padding: 0 24px;
   background-color: white;

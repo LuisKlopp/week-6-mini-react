@@ -8,6 +8,7 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <>
       {/* Header */}
@@ -17,7 +18,9 @@ const Header = () => {
       <HeaderSideDiv>
           <Input defaultValue="Hello world" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
           <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button>
-          <Button variant="contained" color="success" ><Link to={'login'}>LogIn</Link></Button>
+          <Button variant="contained" color="success" onClick={() => {
+            navigate('/login')
+          }} >Login</Button>
       </HeaderSideDiv>
       </LogoPosition>
       </HeaderContainer>
