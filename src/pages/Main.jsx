@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import MUIButton from "../components/Button";
 import StuffCard from "../components/StuffCard";
 import data from "../components/test";
+import { Outlet } from "react-router-dom";
 // import Button from '@mui/material/Button';
 
 const Main = () => {
@@ -12,7 +13,7 @@ const Main = () => {
     <>
       <GlobalStyle />
       <Header></Header>
-      {/* <MUIButton/> */}
+      <Outlet></Outlet>
       <StList>
         {data.map((stuff, i)=> {
           return <StuffCard stuff={stuff} key={i}/>
