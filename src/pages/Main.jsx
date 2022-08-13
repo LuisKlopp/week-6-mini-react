@@ -4,22 +4,33 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import MUIButton from "../components/Button";
 import StuffCard from "../components/StuffCard";
-import { Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import data from "../components/CardTest";
+import Button from '@mui/material/Button';
+
+
 
 // import Button from '@mui/material/Button';
 
 const Main = () => {
+  const navigate = useNavigate()
   return (
     <>
       <GlobalStyle />
       <Header></Header>
       <Outlet></Outlet>
+      <StDiv>
+      <Button variant="contained" style={{backgroundColor:'#c95f19', fontWeight:600}} onClick={() => {
+        navigate('/post')
+      }}>글쓰기</Button>
+      </StDiv>
       <StList>
         {data.map((stuff, i)=> {
           return <StuffCard stuff={stuff} key={i}/>
         })}
       </StList>
+
+
 
     </>
   );
@@ -59,3 +70,13 @@ const StList = styled.div`
   flex-wrap: wrap;
   margin-top:50px;
 `;
+
+const StDiv = styled.div`
+  width:95%;
+  display: flex;
+  justify-content: right;
+  /* margin: 0px;  */
+  position:fixed;
+  /* bottom:0; */
+  /* background-color: oragne; */
+`

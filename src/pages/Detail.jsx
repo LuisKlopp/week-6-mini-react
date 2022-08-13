@@ -2,12 +2,11 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header2 from "../components/Header2";
-import CardHeader from '@mui/material/CardHeader';
-import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
+import CardHeader from "@mui/material/CardHeader";
+import Avatar from "@mui/material/Avatar";
+import { red } from "@mui/material/colors";
 import Comment from "../components/Comment";
 import dotImg from '../img/dotdot.jpg'
-
 
 
 const Detail = () => {
@@ -23,25 +22,32 @@ const Detail = () => {
         </IntroBox>
       </IntroContainer>
 
+
       <StWrapper>
-          <StImgBox>
-          </StImgBox>
-            <StProfile>
-            <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title="profile-name"
-      />
-            </StProfile>
-            <StContent>
+        <StImgBox></StImgBox>
+        <StProfile>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                R
+              </Avatar>
+            }
+            // action={
+            //   <IconButton aria-label="settings">
+            //     <MoreVertIcon />
+            //   </IconButton>
+            // }
+            title="profile-name"
+          />
+        </StProfile>
+        <StContent>
+          <StSpan>title</StSpan>
+          <StSpan_1>title</StSpan_1>
+          <StSpan>content</StSpan>
+          <StSpan_1>content</StSpan_1>
+          <StSpan style={{ marginTop: "50px" }}>Price</StSpan>
+        </StContent>
+
 
               <StSpan>title</StSpan>
               <StSpan_1>title</StSpan_1>
@@ -84,24 +90,24 @@ const StImgBox = styled.div`
   background-size: 100% 100%;
   background-position: center;
   border-radius: 20px;
-  `;
+`;
 
 const StProfile = styled.div`
-  width:35%;
+  width: 35%;
   border: 2px solid #ececec;
-  height:100px;
+  height: 100px;
   display: flex;
   align-items: center;
-  `
+`;
 
 const StContent = styled.div`
-  width:35%;
+  width: 35%;
   border: 2px solid #ececec;
-  height:300px;
+  height: 300px;
   display: flex;
   flex-direction: column;
-  margin-top:40px;
-`
+  margin-top: 40px;
+`;
 
 const StSpan = styled.div`
   margin:30px 0px 0px 30px;

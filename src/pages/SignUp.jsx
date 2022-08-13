@@ -61,11 +61,16 @@ const SignUp = () => {
               <Avatar sx={{ m: 1, bgcolor: 'success.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
+
+
               <Typography component="h1" variant="h5">
                 SIGN UP
               </Typography>
+
+
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                 <label htmlFor="upload-photo">
+
                   <UploadPhoto></UploadPhoto>
                   <input
                     style={{ display: 'none' }}
@@ -77,7 +82,9 @@ const SignUp = () => {
                   <Button color="secondary" variant="contained" component="span"  sx={{ mt: 1, ml: 14 }}>
                     Upload button
                   </Button>
+
                 </label>
+                
                 <InputAndButton>
                   <TextField
                     sx={{mt:3, width:300}}
