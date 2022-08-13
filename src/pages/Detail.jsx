@@ -6,12 +6,23 @@ import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import { red } from "@mui/material/colors";
 import Comment from "../components/Comment";
+import dotImg from '../img/dotdot.jpg'
+
 
 const Detail = () => {
   return (
     <>
       <GlobalStyle />
-      {/* <Header2></Header2> */}
+      <Header2></Header2>
+
+      {/* Introuduce */}
+      <IntroContainer>
+        <IntroBox>
+          상세 페이지
+        </IntroBox>
+      </IntroContainer>
+
+
       <StWrapper>
         <StImgBox></StImgBox>
         <StProfile>
@@ -37,7 +48,15 @@ const Detail = () => {
           <StSpan style={{ marginTop: "50px" }}>Price</StSpan>
         </StContent>
 
-        <Comment></Comment>
+
+              <StSpan>title</StSpan>
+              <StSpan_1>title</StSpan_1>
+              <StSpan>content</StSpan>
+              <StSpan_1>content</StSpan_1>
+              
+            </StContent>
+      
+      <Comment></Comment>
       </StWrapper>
     </>
   );
@@ -91,11 +110,30 @@ const StContent = styled.div`
 `;
 
 const StSpan = styled.div`
-  margin: 30px 0px 0px 30px;
-  font-weight: 600;
-`;
+  margin:30px 0px 0px 30px;
+  font-weight:600;
+  `
 
 const StSpan_1 = styled.div`
-  margin: 30px 0px 0px 30px;
-  /* font-weight:600 */
-`;
+margin:30px 0px 0px 30px;
+/* font-weight:600 */
+`
+const IntroContainer = styled.div`
+  margin-top: 50px;
+  width: 100%;
+  height: 150px;
+  background-image: url(${dotImg});
+  position: relative;
+`
+const IntroBox = styled.div`
+  font-family: 'Cafe24Ohsquareair';
+  font-size: 30px;
+  line-height: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+`
+
+
+
+
