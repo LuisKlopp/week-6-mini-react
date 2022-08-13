@@ -49,11 +49,12 @@ const Detail = () => {
         </StContent>
 
 
+
               <StSpan>title</StSpan>
               <StSpan_1>title</StSpan_1>
               <StSpan>content</StSpan>
               <StSpan_1>content</StSpan_1>
-                    
+
       <Comment></Comment>
       </StWrapper>
     </>

@@ -2,6 +2,7 @@
 
 import styled, { createGlobalStyle } from "styled-components";
 import * as React from 'react';
+import {useEffect, useReducer} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,25 +18,37 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-
+const reducer = (state, action) => {
+  return {
+    ...state,
+    [action.name]: action.value,
+  }
+}
 
 
 const Login = () => {
 
   const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email')
-    const password = data.get('password')
-    const loginData = {
-      email,
-      password,
-    }
-    console.log(loginData)
+  const [state, setState] = useReducer(reducer, {
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = state;
+
+  const onChange = (e) => {
+    setState(e.target);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const loginInfo = {
+      username,
+      password,
+    }
+
+  };
 
 
   return (
@@ -61,10 +74,11 @@ const Login = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="ID"
+              name="username"
+              autoComplete="username"
+              onChange={onChange}
               autoFocus
             />
             <TextField
@@ -75,6 +89,7 @@ const Login = () => {
               label="Password"
               type="password"
               id="password"
+              onChange={onChange}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -91,7 +106,7 @@ const Login = () => {
               Log In
             </Button>
             <Button
-                  // type="submit"
+                  type="submit"
                   fullWidth
                   variant="outlined"
                   sx={{ mt: 1, mb: 2, p: 1.5 }}
