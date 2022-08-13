@@ -25,19 +25,20 @@ const Post = () => {
 
       <StWrapper>
         
-        <label htmlFor="upload-photo">
-        <StImgBox />
-          <input
-            style={{ display: 'none' }}
-            id="upload-photo"
-            name="upload-photo"
-            type="file"
-          />
-
-          <Button color="secondary" fullWidth variant="contained" component="span"  sx={{ mt: 1 }}>
-            Upload button
-          </Button>
-        </label>
+        <div>
+          <label htmlFor="upload-photo">
+          <StImgBox />
+            <input
+              style={{ display: 'none' }}
+              id="upload-photo"
+              name="upload-photo"
+              type="file"
+            />
+            <Button color="secondary" fullWidth variant="contained" component="span"  sx={{ mt: 1 }}>
+              Upload button
+            </Button>
+          </label>
+        </div>
       </StWrapper>
     </>
   );
