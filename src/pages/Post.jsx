@@ -6,12 +6,16 @@ import Header2 from "../components/Header2";
 import dotImg from '../img/dotdot.jpg'
 import noImg from '../img/No-Image.png'
 import Button from '@mui/material/Button';
-
-
+import TextField from '@mui/material/TextField';
 
 const Post = () => {
   const navigate = useNavigate();
-
+  const [value, setValue] = React.useState('title');
+  const [content, setContent] = React.useState('content');
+  const [price, setPrice] = React.useState('30,000원');
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <>
       <GlobalStyle />
@@ -39,7 +43,54 @@ const Post = () => {
             </Button>
           </label>
         </div>
+        <div>
+        <StContent>
+          <StSpan>Title</StSpan>
+          <TextField
+            id="outlined-multiline-flexible"
+            // label=""
+            multiline
+            maxRows={4}
+            value={value}
+              onChange={handleChange}
+              sx={{mt:2, ml:3}}
+          >title</TextField>
+            <StSpan>Content</StSpan>
+            <TextField
+            id="outlined-multiline-flexible"
+            // label=""
+            multiline
+            maxRows={4}
+            value={content}
+            onChange={handleChange}
+            sx={{mt:2, ml:3}}
+          >content</TextField>
+          </StContent>
+
+          
+          <StPriceBox>
+            <StPrice>
+              <PriceSpan>Price</PriceSpan>
+              <TextField
+              id="outlined-multiline-flexible"
+              // label=""
+              multiline
+              maxRows={4}
+              value={price}
+              onChange={handleChange}
+              sx={{mt:3, ml:3}}
+              />
+            </StPrice>
+              
+          </StPriceBox>
+        </div>
       </StWrapper>
+      <StSubmitButton>
+        <Button variant="contained" style={{ width: '120px', padding: '0.5rem', backgroundColor: '#e86914', marginLeft: '30px' }}>
+          등록하기
+        </Button>
+      </StSubmitButton>
+
     </>
   );
 };
@@ -88,3 +139,44 @@ const StImgBox = styled.div`
   background-position: center;
   border-radius: 20px;
   `;
+
+const StContent = styled.div`
+  width:300px;
+  border: 2px solid #ececec;
+  height: 300px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  margin-top: 0px;
+  margin-left: 40px;
+`
+
+const StSpan = styled.div`
+  margin:30px 0px 0px 30px;
+  font-weight:600;
+  font-size:24px ;
+  `
+
+// const StSpan_1 = styled.div`
+// margin:30px 0px 0px 30px;
+// `
+const StPriceBox = styled.div`
+  margin-top: 10px;
+  margin-left: 40px;
+`
+const StPrice = styled.div`
+  /* padding: 1rem; */
+  font-weight:600;
+  display: flex;
+`
+
+const PriceSpan = styled.div`
+  font-weight: 500;
+  font-size: 24px;
+  margin-top: 30px;
+`
+
+const StSubmitButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
