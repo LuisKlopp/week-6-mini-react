@@ -11,9 +11,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import styled_components from 'styled-components';
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
@@ -42,26 +39,17 @@ export default function StuffCard({stuff, i}) {
 
   return (
     <Card sx={{ maxWidth: 345}} style={{marginTop:"70px", height:"400px"}}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }}  aria-label="recipe">
-            R
-          </Avatar>
-        }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        
-        title={stuff.title}
-      ></CardHeader>
+      <StDiv
+        component='div'>
+          <Avatar sx={{ bgcolor: red[500] }}  aria-label="recipe" style={{position:'absolute', left:'20px'}}>R</Avatar>
+          <StSpan>{stuff.title}</StSpan>
+          </StDiv>
       <CardMedia
         component="img"
         height="194"
-        image="https://xenosium.com/wp-content/uploads/1/4212118951.jpg"
-        alt="Paella dish"
-        style={{cursor:'pointer'}}
+        // image={stuff.image}
+        // alt="Paella dish"
+        style={{cursor:'pointer', backgroundImage: `url("${stuff.image}")`, backgroundSize:'230px 190px'}}
         onClick={() => {
           navigate('/detail')
         }}
@@ -133,4 +121,19 @@ const StPrice = styled_components.div`
   color:white;
   font-size:17px;
 `;
+
+const StDiv = styled_components.div`
+  width:100%;
+  height:70px;
+  border:1px solid #ececec;
+  border-bottom:none;
+  display:flex;
+  align-items:center;
+  position:relative;
+`
+
+const StSpan = styled_components.div`
+  font-weight:600;
+  margin-left:180px;
+`
 

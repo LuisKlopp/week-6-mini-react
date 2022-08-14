@@ -48,8 +48,6 @@ const Detail = () => {
           <StSpan style={{ marginTop: "50px" }}>Price</StSpan>
         </StContent>
 
-
-
               <StSpan>title</StSpan>
               <StSpan_1>title</StSpan_1>
               <StSpan>content</StSpan>
