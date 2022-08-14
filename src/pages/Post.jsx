@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useReducer } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import {  Link, useNavigate } from "react-router-dom";
 import Header2 from "../components/Header2";
@@ -8,20 +8,30 @@ import noImg from '../img/No-Image.png'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
+const reducer = (state, action) => {
+  return {
+    ...state,
+    [action.name]: action.value,
+  }
+}
+
 const Post = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = React.useState('title');
-  const [content, setContent] = React.useState('content');
-  const [price, setPrice] = React.useState('30,000원');
-  const handleChangeTitle = (event) => {
-    setTitle(event.target.value);
-  };
-  const handleChangeContent = (event) => {
-    setContent(event.target.value);
-  };
-  const handleChangePrice = (event) => {
-    setPrice(event.target.value);
-  };
+
+  const [state, setState] = useReducer(reducer, {
+    title: '',
+    content: '',
+    price: '',
+  })
+
+  const { title, content, price } = state;
+
+
+  const onChange = (e) => {
+    setState(e.target)
+    console.log(title, content, price)
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -57,8 +67,8 @@ const Post = () => {
             // label=""
             multiline
             maxRows={4}
-            value={title}
-              onChange={handleChangeTitle}
+              onChange={onChange}
+              name='title'
               sx={{mt:2, ml:3}}
           >title</TextField>
             <StSpan>Content</StSpan>
@@ -67,8 +77,8 @@ const Post = () => {
             // label=""
             multiline
             maxRows={4}
-            value={content}
-            onChange={handleChangeContent}
+            name='content'
+            onChange={onChange}
             sx={{mt:2, ml:3}}
           >content</TextField>
           </StContent>
@@ -82,8 +92,8 @@ const Post = () => {
               // label=""
               multiline
               maxRows={4}
-              value={price}
-              onChange={handleChangePrice}
+              onChange={onChange}
+              name='price'
               sx={{mt:3, ml:3}}
               />
             </StPrice>
