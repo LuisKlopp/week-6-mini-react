@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React,{useState,useRef} from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import {  Link, useNavigate } from "react-router-dom";
 import Header2 from "../components/Header2";
@@ -10,9 +10,13 @@ import TextField from '@mui/material/TextField';
 
 const Post = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = React.useState('title');
-  const [content, setContent] = React.useState('content');
-  const [price, setPrice] = React.useState('30,000원');
+  const [imageUrl, setImageUrl] = useState(null);
+  const imgRef = useRef();
+
+  const [title, setTitle] = useState('title');
+  const [content, setContent] = useState('content');
+  const [price, setPrice] = useState('30,000원');
+
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -22,6 +26,17 @@ const Post = () => {
   const handleChangePrice = (event) => {
     setPrice(event.target.value);
   };
+  
+  const onChangeImage = () => {
+    const reader = new FileReader();
+    const file = imgRef.current.files[0];
+
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+      // console.log("이미지주소", reader.result);
+    };
+  }
   return (
     <>
       <GlobalStyle />
@@ -35,20 +50,25 @@ const Post = () => {
 
       <StWrapper>
         
-        <div>
+        <StUploadContainer>
           <label htmlFor="upload-photo">
-          <StImgBox />
+            
+            <StImgTag src={imageUrl ? imageUrl : (noImg)}></StImgTag>
+            
             <input
               style={{ display: 'none' }}
+              accept="image/*"
               id="upload-photo"
               name="upload-photo"
               type="file"
+              onChange={onChangeImage}
+              ref={imgRef}
             />
-            <Button color="secondary" fullWidth variant="contained" component="span"  sx={{ mt: 1 }}>
+            <Button color="secondary" variant="contained" component="span"  sx={{ mt: 1, ml: 10 }}>
               Upload button
             </Button>
           </label>
-        </div>
+        </StUploadContainer>
         <div>
         <StContent>
           <StSpan>Title</StSpan>
@@ -136,16 +156,13 @@ const IntroBox = styled.div`
   top: 50px;
   left: 50px;
 `
-
-const StImgBox = styled.div`
+const StUploadContainer = styled.div`
+  width: 400px;
+`
+const StImgTag = styled.img`
   width: 300px;
   height: 350px;
-  background: url(${noImg});
-  background-size: 100% 100%;
-  background-position: center;
-  border-radius: 20px;
-  `;
-
+`
 const StContent = styled.div`
   width:300px;
   border: 2px solid #ececec;
