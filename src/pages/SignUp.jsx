@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 // function Copyright(props) {
 //   return (
@@ -40,19 +41,19 @@ const reducer = (state, action) => {
 
 const SignUp = () => {
   const navigate = useNavigate();
-
+  
   const [state, setState] = useReducer(reducer, {
     username: "",
     nickname: "",
     password: "",
   });
-
+  
   const { username, nickname, password } = state;
-
+  
   const onChange = (e) => {
     setState(e.target);
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const userInfo = {
@@ -60,9 +61,13 @@ const SignUp = () => {
       nickname,
       password,
     }
-    console.log(userInfo)
-
+		axios
+			.post('https://01192mg.shop/api/members/signup', userInfo)
+			.then((res) => {
+					console.log(res.data)// 쿠키에 토큰 저장
+			});
   };
+
 
   
 

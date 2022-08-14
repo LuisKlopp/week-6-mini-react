@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, ThemeConsumer } from "styled-components";
 import * as React from 'react';
 import {useEffect, useReducer} from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -17,6 +17,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';  
+import axios from 'axios';
+
+
+axios.defaults.withCredentials = true;
 
 const reducer = (state, action) => {
   return {
@@ -28,7 +33,10 @@ const reducer = (state, action) => {
 
 const Login = () => {
 
+
   const navigate = useNavigate()
+
+  const [cookies, setCookie] = useCookies(['id']);
 
   const [state, setState] = useReducer(reducer, {
     username: "",
@@ -42,13 +50,17 @@ const Login = () => {
   };
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
-    const loginInfo = {
+    const loginInfo = { 
       username,
       password,
     }
-    console.log(loginInfo)
-
+    axios.post('https://01192mg.shop/api/members/login', loginInfo)
+    .then((res) => {
+      // res.cookie('sessionID', username)
+      console.log(res.data)
+    })
   };
 
 
