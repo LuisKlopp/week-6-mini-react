@@ -5,7 +5,10 @@ import posts from '../modules/postSlice';
 
 
 const store = configureStore({
-  reducer: { posts, comments },
+  reducer: { 
+    posts: posts,
+    comments: comments,
+   },
 });
 
 export default store;

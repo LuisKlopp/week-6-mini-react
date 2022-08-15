@@ -11,7 +11,8 @@ export const getPost = createAsyncThunk(
   "post/getPosts",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/posts");
+      const data = await axios.get("https://01192mg.shop/api/posts");
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -19,28 +20,30 @@ export const getPost = createAsyncThunk(
   }
 );
 
-export const addpost = createAsyncThunk("post/addPosts", async (newList) => {
-  // console.log(newList)
-  const response = await axios.post("http://localhost:3001/posts", newList);
+export const addpost = createAsyncThunk("post/addPosts", async (newList, config) => {
+  console.log(newList)
+  const response = await axios.post("https://01192mg.shop/api/posts", newList, config);
   return response.data
 })
 
 export const postSlice = createSlice({
   name: 'posts',
   initialState,
-  reducers: {},
+  reducers: {
+  },
   extraReducers: {
-    [getPost.fulfilled]: (state, action) => {
+    [getPost.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [getPost.rejected]: (state, action) => {
-      // state.isLoading = false
-      console.log(action)
+    [getPost.fulfilled]: (state, action) => {
+      state.isLoading = false
+      state.posts = action.payload
     },
-    [addpost.fulfilled]: (state, action) => 
-      // {(console.log(action.payload))},
-      {state.comment.push(action.payload)},
-    
+    [addpost.rejected]: (state, action) => 
+      {
+        state.isLoading= false
+        state.posts = action.payload
+      },
   },
 })
 
