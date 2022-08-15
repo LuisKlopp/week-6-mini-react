@@ -10,13 +10,13 @@ import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <CookiesProvider>
+  <CookiesProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </CookiesProvider>
-  </Provider>
+    </Provider>
+  </CookiesProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

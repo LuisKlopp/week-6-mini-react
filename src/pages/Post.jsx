@@ -2,11 +2,14 @@
 import React,{useState,useRef,useReducer} from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import {  Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Header2 from "../components/Header2";
 import dotImg from '../img/dotdot.jpg'
 import noImg from '../img/No-Image.png'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { addpost } from "../redux/modules/postSlice";
+import axios from 'axios'
 
 const reducer = (state, action) => {
   return {
@@ -16,6 +19,7 @@ const reducer = (state, action) => {
 }
 
 const Post = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [state, setState] = useReducer(reducer, {
@@ -29,22 +33,49 @@ const Post = () => {
 
   const onChange = (e) => {
     setState(e.target)
-    console.log(title, content, price)
   }
 
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null); 
+  const [imgFile, setImgFile] = useState("")
   const imgRef = useRef();
 
   const onChangeImage = () => {
     const reader = new FileReader();
-    const file = imgRef.current.files[0];
 
+    const file = imgRef.current.files[0];
+    console.log(file)
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImageUrl(reader.result);
-      // console.log("이미지주소", reader.result);
+      setImgFile(file)
+      
     };
   }
+
+  const onSubmit =  () =>  {
+    const formData = new FormData()
+    formData.append("file", imgFile)
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+
+    const obj = {
+      title,
+      content,
+      price,
+      file: formData
+    }
+
+
+    console.log(obj)
+    dispatch(addpost(obj, config))
+    navigate('/');
+    
+    };
+  
 
   return (
     <>
@@ -80,48 +111,46 @@ const Post = () => {
         </StUploadContainer>
         <div>
         <StContent>
-          <StSpan>Title</StSpan>
-          <TextField
+          <StSpan>제목</StSpan>
+          <StInput  
+            id="outlined-multiline-flexible"
+            onChange={onChange}
+            name='title'
+            style={{fontWeight:'600', marginBottom:'20px'}}
+          ></StInput>
+            <StSpan>내용</StSpan>
+            <textarea
             id="outlined-multiline-flexible"
             // label=""
-            multiline
-            maxRows={4}
-              onChange={onChange}
-              name='title'
-              sx={{mt:2, ml:3}}
-          >title</TextField>
-            <StSpan>Content</StSpan>
-            <TextField
-            id="outlined-multiline-flexible"
-            // label=""
-            multiline
-            maxRows={4}
             name='content'
             onChange={onChange}
             sx={{mt:2, ml:3}}
-          >content</TextField>
+            style={{height:'120px',width:'90%', resize:'none',   borderRadius: '10px', fontSize:'17px',  paddingLeft:'10px'}}
+          ></textarea>
           </StContent>
 
           
           <StPriceBox>
             <StPrice>
-              <PriceSpan>Price</PriceSpan>
-              <TextField
+              <PriceSpan>Price:</PriceSpan>
+              <StInput
               id="outlined-multiline-flexible"
               // label=""
-              multiline
-              maxRows={4}
               onChange={onChange}
               name='price'
-              sx={{mt:3, ml:3}}
+              type='number'
               />
+              <PriceSpan>원</PriceSpan>
             </StPrice>
-              
           </StPriceBox>
         </div>
       </StWrapper>
       <StSubmitButton>
-        <Button variant="contained" style={{ width: '120px', padding: '0.5rem', backgroundColor: '#e86914', marginLeft: '30px' }}>
+        <Button variant="contained" 
+        style={{ width: '120px', padding: '0.5rem', backgroundColor: '#e86914', marginLeft: '30px' }}
+        onClick={onSubmit}
+        encType="multipart/form-data"
+        >
           등록하기
         </Button>
       </StSubmitButton>
@@ -165,6 +194,16 @@ const IntroBox = styled.div`
   top: 50px;
   left: 50px;
 `
+
+const StInput = styled.input`
+  width:80%;
+  height:30px;
+  border:1px solid black;
+  margin:0 auto;
+  border-radius: 10px;
+  padding-left:10px;
+  `
+
 const StUploadContainer = styled.div`
   width: 400px;
 `
@@ -179,32 +218,39 @@ const StContent = styled.div`
   /* display: flex; */
   /* flex-direction: column; */
   margin-top: 0px;
-  margin-left: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `
 
 const StSpan = styled.div`
-  margin:30px 0px 0px 30px;
   font-weight:600;
   font-size:24px ;
+  margin-bottom:10px;
   `
 
 // const StSpan_1 = styled.div`
 // margin:30px 0px 0px 30px;
 // `
 const StPriceBox = styled.div`
-  margin-top: 10px;
-  margin-left: 40px;
+  margin-top: 50px;
+  margin-left: 0px;
 `
 const StPrice = styled.div`
   /* padding: 1rem; */
   font-weight:600;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `
 
 const PriceSpan = styled.div`
   font-weight: 500;
   font-size: 24px;
-  margin-top: 30px;
+  margin:0px 20px 0px 20px
+
 `
 
 const StSubmitButton = styled.div`

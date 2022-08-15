@@ -8,6 +8,9 @@ import { useNavigate, Outlet } from "react-router-dom";
 import data from "../components/CardTest";
 import Button from '@mui/material/Button';
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getPost } from "../redux/modules/postSlice";
+
 
 
 
@@ -16,21 +19,25 @@ import axios from "axios";
 const Main = () => {
 
   const [post, setPost] = useState([])
-
-
+  const dispatch = useDispatch();
+  
   useEffect(() =>  {
-    get_posts();
-
+    dispatch(getPost());
+    userInfo()
   }, [])
 
-  const get_posts = async () => {
-    const { data } = await axios.get("http://localhost:3001/posts");
-    setPost(data); // 서버로부터 fetching한 데이터를 useState의 state로 set 합니다.
-    console.log(post)
-  };
-
-
   const navigate = useNavigate()
+  
+  const state = useSelector((state) => state)
+  // const { isLoading, error, posts } = useSelector((state) => state.posts)
+  console.log(state)
+
+  const userInfo = async () => {
+    const data = await axios.get("https://01192mg.shop/api/members/info")
+    console.log(data)
+  } 
+
+
   return (
     <>
       <GlobalStyle />
@@ -42,9 +49,9 @@ const Main = () => {
       }}>글쓰기</Button>
       </StDiv>
       <StList>
-        {post.map((stuff, i)=> {
+        {/* {posts.map((stuff, i)=> {
           return <StuffCard stuff={stuff} key={i}/>
-        })}
+        })} */}
       </StList>
 
 
