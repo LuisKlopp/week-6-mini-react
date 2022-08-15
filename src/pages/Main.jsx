@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import MUIButton from "../components/Button";
@@ -7,12 +7,29 @@ import StuffCard from "../components/StuffCard";
 import { useNavigate, Outlet } from "react-router-dom";
 import data from "../components/CardTest";
 import Button from '@mui/material/Button';
+import axios from "axios";
 
 
 
 // import Button from '@mui/material/Button';
 
 const Main = () => {
+
+  const [post, setPost] = useState([])
+
+
+  useEffect(() =>  {
+    get_posts();
+
+  }, [])
+
+  const get_posts = async () => {
+    const { data } = await axios.get("http://localhost:3001/posts");
+    setPost(data); // 서버로부터 fetching한 데이터를 useState의 state로 set 합니다.
+    console.log(post)
+  };
+
+
   const navigate = useNavigate()
   return (
     <>
@@ -25,7 +42,7 @@ const Main = () => {
       }}>글쓰기</Button>
       </StDiv>
       <StList>
-        {data.map((stuff, i)=> {
+        {post.map((stuff, i)=> {
           return <StuffCard stuff={stuff} key={i}/>
         })}
       </StList>
