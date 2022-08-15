@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import todos from "../modules/todoSlice";
-import comment from '../modules/commentSlice';
+import comments from "../modules/commentSlice";
+import posts from '../modules/postSlice';
 
 
 const store = configureStore({
-  reducer: { todos, comment },
+  reducer: { posts, comments },
 });
 
 export default store;

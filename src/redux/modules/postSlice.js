@@ -25,7 +25,7 @@ export const addpost = createAsyncThunk("post/addPosts", async (newList) => {
   return response.data
 })
 
-export const commentSlice = createSlice({
+export const postSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {},
@@ -44,4 +44,4 @@ export const commentSlice = createSlice({
   },
 })
 
-export default commentSlice.reducer;
+export default postSlice.reducer;
