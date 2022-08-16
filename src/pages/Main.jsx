@@ -11,6 +11,7 @@ import axios from "axios";
 import Filter from '../components/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../redux/modules/postSlice";
+import { getCookieToken } from "../Cookie";
 
 
 
@@ -21,37 +22,57 @@ const Main = () => {
   const dispatch = useDispatch();
   
   useEffect(() =>  {
-    dispatch(getPost());
+    getPost()
   }, [])
 
   const navigate = useNavigate()
-  
-  const state = useSelector((state) => state)
-  const { isLoading, error, posts } = useSelector((state) => state.posts)
-
-
-  return (
-    <>
-      <GlobalStyle />
-      {/* Filter */}
-      <Filter />
-      <Outlet></Outlet>
-      <StDiv>
-      <Button variant="contained" style={{backgroundColor:'#c95f19', fontWeight:600}} onClick={() => {
-        navigate('/post')
-      }}>글쓰기</Button>
-      </StDiv>
-      <StList>
-        {/* {posts.map((stuff, i)=> {
-          return <StuffCard stuff={stuff} key={i}/>
-        })} */}
-      </StList>
+  const cookie = getCookieToken()
+  // const state = useSelector((state) => state)
+  // const { isLoading, error, posts } = useSelector((state) => state.posts)
 
 
 
-    </>
-  );
-};
+  let button;
+
+  if (cookie) {
+     button = <Button variant="contained" style={{backgroundColor:'#c95f19', fontWeight:600}} onClick={() => {
+      navigate('/post')
+    }}>글쓰기</Button>
+  }
+
+  const getPost = 
+    async () => {
+        const data = await (await axios.get("https://01192mg.shop/api/posts")).data.data;
+        setPost(data)
+        return data
+    };
+
+
+
+
+
+    return (
+      <>
+        <GlobalStyle />
+        {/* Filter */}
+        <Filter />
+        <Outlet></Outlet>
+        <StDiv>
+          {button}
+        </StDiv>
+        <StList>
+          {post.map((stuff, i)=> {
+            return <StuffCard stuff={stuff} key={i}/>
+          })}
+        </StList>
+      </>
+    );
+  }
+
+
+
+
+
 
 export default Main;
 

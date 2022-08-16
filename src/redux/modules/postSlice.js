@@ -20,9 +20,12 @@ export const getPost = createAsyncThunk(
   }
 );
 
-export const addpost = createAsyncThunk("post/addPosts", async (newList, config) => {
+export const addpost = createAsyncThunk("post/addPosts", async (newList) => {
   console.log(newList)
-  const response = await axios.post("https://01192mg.shop/api/posts", newList, config);
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `${response.headers.authorization}`;
+  const response = await axios.post("https://01192mg.shop/api/auth/posts", newList);
   return response.data
 })
 
@@ -38,6 +41,7 @@ export const postSlice = createSlice({
     [getPost.fulfilled]: (state, action) => {
       state.isLoading = false
       state.posts = action.payload
+      console.log(action.payload)
     },
     [addpost.rejected]: (state, action) => 
       {

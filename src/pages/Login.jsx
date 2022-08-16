@@ -19,7 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';  
 import axios from 'axios';
-import { setAccessToken } from "../Cookie";
+import { setAccessToken, setRefreshToken } from "../Cookie";
 
 
 axios.defaults.withCredentials = true;
@@ -66,11 +66,9 @@ const Login = () => {
         data: loginInfo,
         // withCredentials: true,
       })
-      console.log(response)
       setAccessToken(response.headers.authorization);
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `${response.headers.authorization}`;
+      setRefreshToken(response.headers['refresh-token'])
+
       return navigate("/")
     }
     catch (err) {
