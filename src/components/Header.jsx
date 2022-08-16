@@ -67,3 +67,15 @@ const HeaderSideDiv = styled.div`
 `
 
 
+
+
+
+
+// <Button variant="contained" color="success" sx={{height:'40px', mt:2.5}} >
+// {cookie ? <div onClick={removeCookie}>Log Out</div> : <div onClick={()=>{ if (pathname === '/') {
+//     navigate('/login');
+//   } else if (pathname === '/detail') {
+//     navigate('/detail/login');
+//   } 
+// }}>Log In</div>}
+// </Button>
