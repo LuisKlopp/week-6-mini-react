@@ -8,13 +8,12 @@ import { useNavigate, Outlet } from "react-router-dom";
 import data from "../components/CardTest";
 import Button from '@mui/material/Button';
 import axios from "axios";
+import Filter from '../components/Filter';
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../redux/modules/postSlice";
 
 
 
-
-// import Button from '@mui/material/Button';
 
 const Main = () => {
 
@@ -41,7 +40,8 @@ const Main = () => {
   return (
     <>
       <GlobalStyle />
-      <Header></Header>
+      {/* Filter */}
+      <Filter />
       <Outlet></Outlet>
       <StDiv>
       <Button variant="contained" style={{backgroundColor:'#c95f19', fontWeight:600}} onClick={() => {

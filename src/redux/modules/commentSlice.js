@@ -20,7 +20,7 @@ export const getDetailComments = createAsyncThunk(
 );
 
 export const addCommentList = createAsyncThunk("comment/addComment", async (newList) => {
-  // console.log(newList)
+  console.log(newList)
   const response = await axios.post("http://localhost:3001/comments", newList);
   return response.data
 })
@@ -31,15 +31,18 @@ export const commentSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getDetailComments.fulfilled]: (state, action) => {
+      // console.log(action.payload[0])
+      state.comments = action.payload;
       state.isLoading = true;
     },
     [getDetailComments.rejected]: (state, action) => {
-      // state.isLoading = false
+      state.isLoading = false
       console.log(action)
     },
     [addCommentList.fulfilled]: (state, action) => 
       // {(console.log(action.payload))},
-      {state.comment.push(action.payload)},
+    
+      {state.comments.push(action.payload)},
     
   },
 })

@@ -6,22 +6,28 @@ import Detail from "./pages/Detail";
 import Post from "./pages/Post";
 import { Routes, Route, Link, Redirect } from 'react-router-dom'
 import SignUp from './pages/SignUp';
-
+import Header from './components/Header';
 
 function App() {
   return (
+    <>
+    <Header />
     <Routes>
 
       <Route path="/" element={<Main />} >
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp/>}/>
       </Route>
-      <Route path="/Detail" element={<Detail />}/>
+        <Route path="/detail" element={<Detail />}>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp/>}/>  
+        </Route>
       <Route path="/post" element={<Post/>}/>
 
       {/* <Route path="/detail/:id" element={<Detail/>}/> */}
 
-    </Routes>
+      </Routes>
+    </>
   );
 }
 

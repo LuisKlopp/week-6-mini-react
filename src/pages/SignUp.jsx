@@ -231,7 +231,7 @@ const SignUpContainer = styled.div`
 const WrapperPosition = styled.div`
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 400px;
   width: 600px;
   height: 1000px;
   padding: 0 24px;
