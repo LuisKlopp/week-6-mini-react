@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useEffect} from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
@@ -7,8 +7,16 @@ import { red } from "@mui/material/colors";
 import Comment from "../components/Comment";
 import dotImg from '../img/dotdot.jpg'
 import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Detail = () => {
+
+  const posts = useSelector(state => state)
+  useEffect(() => {
+    
+  })
+
+
   return (
     <>
       <GlobalStyle />
