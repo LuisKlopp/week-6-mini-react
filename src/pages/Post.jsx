@@ -3,7 +3,6 @@ import React,{useState,useRef,useReducer} from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import {  Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Header2 from "../components/Header2";
 import dotImg from '../img/dotdot.jpg'
 import noImg from '../img/No-Image.png'
 import Button from '@mui/material/Button';
