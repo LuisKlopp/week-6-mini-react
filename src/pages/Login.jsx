@@ -19,6 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';  
 import axios from 'axios';
+import { setAccessToken } from "../Cookie";
 
 
 axios.defaults.withCredentials = true;
@@ -49,24 +50,38 @@ const Login = () => {
     setState(e.target);
   };
 
-  const handleSubmit = (event) => {
+  const login_handle = async (event) => {
     
     event.preventDefault();
+
     const loginInfo = { 
       username,
       password,
     }
-    axios.post('https://01192mg.shop/api/members/login', loginInfo)
-    .then((res) => {
-      // res.cookie('sessionID', username)
-      console.log(res)
-    })
-  };
 
-
-  return (
-
-    <ModalContainer>
+    try {
+      let response = await axios({
+        method: 'POST',
+        url: 'https://01192mg.shop/api/members/login',
+        data: loginInfo,
+        // withCredentials: true,
+      })
+      console.log(response)
+      setAccessToken(response.headers.authorization);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `${response.headers.authorization}`;
+      return navigate("/")
+    }
+    catch (err) {
+      console.log(err)
+    }
+    }
+    
+    
+    return (
+      
+      <ModalContainer>
       <WrapperPosition>
         <GlobalStyle />
         <Box
@@ -75,14 +90,14 @@ const Login = () => {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-        >
+          >
           <Avatar sx={{ m: 5, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h3" style={{marginTop:'-10px'}}>
             LOG IN
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 15 }} style={{marginTop:'-1px'}}>
+          <Box component="form" onSubmit={login_handle} noValidate sx={{ mt: 15 }} style={{marginTop:'-1px'}}>
             <TextField
               margin="normal"
               required
@@ -93,7 +108,7 @@ const Login = () => {
               autoComplete="username"
               onChange={onChange}
               autoFocus
-            />
+              />
             <TextField
               margin="normal"
               required
@@ -104,18 +119,18 @@ const Login = () => {
               id="password"
               onChange={onChange}
               autoComplete="current-password"
-            />
+              />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+              />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 10, mb: 2 , p: 2}}
               style={{marginTop:'15px'}}
-            >
+              >
               Log In
             </Button>
             <Button
@@ -124,7 +139,7 @@ const Login = () => {
                   variant="outlined"
                   sx={{ mt: 1, mb: 2, p: 1.5 }}
                   onClick={()=>{navigate(-1)}}
-                >
+                  >
                   뒤로가기
                 </Button>
             <Grid item>
@@ -139,8 +154,10 @@ const Login = () => {
       </WrapperPosition>
     </ModalContainer>
 
-  );
-};
+);
+}
+
+
 
 export default Login;
 
@@ -149,7 +166,7 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   
-`
+  `
 const GlobalStyle = createGlobalStyle`
 	body {
 		padding: 0;

@@ -22,19 +22,12 @@ const Main = () => {
   
   useEffect(() =>  {
     dispatch(getPost());
-    userInfo()
   }, [])
 
   const navigate = useNavigate()
   
   const state = useSelector((state) => state)
-  // const { isLoading, error, posts } = useSelector((state) => state.posts)
-  console.log(state)
-
-  const userInfo = async () => {
-    const data = await axios.get("https://01192mg.shop/api/members/info")
-    console.log(data)
-  } 
+  const { isLoading, error, posts } = useSelector((state) => state.posts)
 
 
   return (
