@@ -66,6 +66,7 @@ const SignUp = () => {
 			.then((res) => {
 					console.log(res.data)// 쿠키에 토큰 저장
 			});
+      navigate('/login')
   };
 
 

@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { addpost } from "../redux/modules/postSlice";
 import axios from 'axios'
+import { getCookieToken, getRefreshToken } from '../Cookie'
 
 const reducer = (state, action) => {
   return {
@@ -52,28 +53,34 @@ const Post = () => {
   }
 
   const onSubmit =  () =>  {
-    const formData = new FormData()
-    formData.append("file", imgFile)
-
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data"
-      }
-    };
 
     const obj = {
       title,
       content,
       price,
-      file: formData
+      file: imageUrl
     }
-
-
     console.log(obj)
-    dispatch(addpost(obj, config))
+    addpost(obj)
     navigate('/');
-    
     };
+
+    const addpost = async (newList) => {
+      console.log(newList)
+      // axios.defaults.headers.common[
+      //   "Authorization"
+      // ] = `${response.headers.authorization}`;
+      let response = await axios.post("https://01192mg.shop/api/auth/posts", newList, {
+        headers: {
+          "Authorization" : getCookieToken(),
+          "refresh-token" : getRefreshToken()
+        }
+      }
+      
+      );
+
+      return response.data
+    }
   
 
   return (
