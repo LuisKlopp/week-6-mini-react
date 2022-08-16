@@ -1,26 +1,18 @@
 /*eslint-disable*/
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import Header2 from "../components/Header2";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import { red } from "@mui/material/colors";
 import Comment from "../components/Comment";
 import dotImg from '../img/dotdot.jpg'
-
+import { Outlet } from "react-router-dom";
 
 const Detail = () => {
   return (
     <>
       <GlobalStyle />
-      <Header2></Header2>
-
-      {/* Introuduce */}
-      <IntroContainer>
-        <IntroBox>
-          상세 페이지
-        </IntroBox>
-      </IntroContainer>
+      <Outlet></Outlet>
 
 
       <StWrapper>
@@ -57,6 +49,18 @@ const Detail = () => {
 export default Detail;
 
 const GlobalStyle = createGlobalStyle`
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ohsquareair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 	body {
 		padding: 0;
 		margin: 0;

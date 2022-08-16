@@ -49,13 +49,8 @@ const Post = () => {
   return (
     <>
       <GlobalStyle />
-      <Header2></Header2>
       {/* Introuduce */}
-      <IntroContainer>
-        <IntroBox>
-          상품 등록하기
-        </IntroBox>
-      </IntroContainer>
+    
 
       <StWrapper>
         
@@ -132,15 +127,27 @@ const Post = () => {
 
 export default Post;
 
-
 const GlobalStyle = createGlobalStyle`
-	body {
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ohsquareair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
 		padding: 0;
 		margin: 0;
     background-color: ecdede;
     
 	}
-  `;
+`
+
 
 const StWrapper = styled.div`
   width: 100%;

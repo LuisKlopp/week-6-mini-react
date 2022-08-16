@@ -59,7 +59,7 @@ const Login = () => {
     axios.post('https://01192mg.shop/api/members/login', loginInfo)
     .then((res) => {
       // res.cookie('sessionID', username)
-      console.log(res.data)
+      console.log(res)
     })
   };
 
@@ -160,7 +160,7 @@ const GlobalStyle = createGlobalStyle`
 const WrapperPosition = styled.div`
   position: absolute;
   z-index: 1;
-  /* top: 400px; */
+  top: 400px;
   width: 30%;
   height: 600px;
   padding: 0 24px;
