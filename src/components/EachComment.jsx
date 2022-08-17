@@ -10,12 +10,15 @@ export default function AlignItemsList() {
   React.useEffect(() => {
     dispatch(getDetailComments())
   }, [dispatch])
-  // console.log(comments)
+  console.log(comments)
   
   return (
     // <CommentList/>
-     comments.map((comment, idx) => (
-       <CommentList  key={comment.id} comment={comment} />)
-    )
+    
+      comments.length >0 ?? comments.map((comment, idx) => (
+      <CommentList  key={comment.id} comment={comment} />)
+   )
+    
+    
   )
 }
