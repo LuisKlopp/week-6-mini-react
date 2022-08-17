@@ -11,7 +11,9 @@ import {getCookieToken} from '../Cookie'
 const Header = () => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
-  const cookie = getCookieToken;
+
+  const cookie = getCookieToken();
+
 
   return (
     <>
@@ -20,15 +22,29 @@ const Header = () => {
       <LogoPosition>
           <LogoFont onClick={() => { navigate('/') }}>🥕당근나라</LogoFont>
       <HeaderSideDiv>
-          <Input defaultValue="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
-          <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button>
-          <Button variant="contained" color="success" onClick={()=>{ if (pathname === '/') {
+          {/* <Input defaultValue="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
+          <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button> */}
+            {cookie ?
+              <div style={{display:'flex'}}>
+                <div style={{ backgroundColor: 'beige', width: '200px' }}>님 환영합니다</div>
+                <Button variant="contained" color="success" onClick={() => {
+                  removeCookieToken()
+                  navigate('/')
+                }} >
+                LOGOUT
+                </Button>
+              </div>
+              :
+            <Button variant="contained" color="success" onClick={() => {
+              if (pathname === '/') {
                   navigate('/login');
                 } else if (pathname === '/detail') {
                   navigate('/detail/login');
                 } 
-              }}>Login
-          </Button>
+              }}>LOGIN
+              </Button>
+            }
+            
       </HeaderSideDiv>
       </LogoPosition>
       </HeaderContainer>

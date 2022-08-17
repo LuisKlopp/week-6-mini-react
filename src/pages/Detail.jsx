@@ -14,6 +14,7 @@ import axios from 'axios'
 import { getPost } from "../redux/modules/postSlice";
 import { getCookieToken, getRefreshToken } from "../Cookie";
 import UseGetDetail from "../hooks/UseGetDetail"; 
+import { getDetailComments } from "../redux/modules/commentSlice";
 
 
 
@@ -100,7 +101,7 @@ const Detail = () => {
           <StSpan style={{ marginTop: "50px", position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
-      {/* <Comment></Comment> */}
+      <Comment></Comment>
       </StWrapper>
     </>
   );

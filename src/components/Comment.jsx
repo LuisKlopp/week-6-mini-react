@@ -5,18 +5,21 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import EachComment from './EachComment';
 import { addCommentList } from '../redux/modules/commentSlice'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom';
 
 const Comment = () => {
   const [value, setValue] = useState('')
   const dispatch = useDispatch();
+  const { id } = useParams();
+  // console.log(id)
   const inputComment = (e) => {
     setValue(e.target.value)
   }
   const addComment = () => {
     if(value == '') return
     const newList = {
-      id: Date.now(),
+      id: id,
       body: value,
 
     }

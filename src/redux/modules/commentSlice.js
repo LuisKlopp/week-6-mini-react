@@ -8,10 +8,11 @@ const initialState = {
 };
 
 export const getDetailComments = createAsyncThunk(
-  "comment/getComment",
+  "comments/getComment",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/comments");
+      const data = await axios.get(`https://01192mg.shop/api/comments/${payload}`);
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -19,9 +20,14 @@ export const getDetailComments = createAsyncThunk(
   }
 );
 
-export const addCommentList = createAsyncThunk("comment/addComment", async (newList) => {
-  console.log(newList)
-  const response = await axios.post("http://localhost:3001/comments", newList);
+export const addCommentList = createAsyncThunk(
+  "comment/addComment",
+  async (newList) => {
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `${response.headers.authorization}`;
+  const response = await axios.post(`https://01192mg.shop/api/auth/comments/${newList.id}`, newList.body);
+  console.log(response.data)
   return response.data
 })
 
@@ -39,10 +45,9 @@ export const commentSlice = createSlice({
       state.isLoading = false
       console.log(action)
     },
-    [addCommentList.fulfilled]: (state, action) => 
-      // {(console.log(action.payload))},
-    
-      {state.comments.push(action.payload)},
+    // [addCommentList.fulfilled]: (state, action) => 
+    //   {(console.log(action.payload))},
+      // {data.comments.push(action.payload)},
     
   },
 })
