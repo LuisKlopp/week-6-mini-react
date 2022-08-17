@@ -13,39 +13,21 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import { getPost } from "../redux/modules/postSlice";
 import { getCookieToken, getRefreshToken } from "../Cookie";
+import UseGetDetail from "../hooks/UseGetDetail"; 
 import { getDetailComments } from "../redux/modules/commentSlice";
+
 
 
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const {id} = useParams();
-  // const readpost = async () => {
-  //   const response = await axios.get(`https://01192mg.shop/api/posts/${id}`)
-  //   console.log(response)
-  //   return response
-  // }
 
-
-  // dispatch(getPost())
-
-  // console.log(id)
-  useEffect(() =>  {
-    dispatch(getDetailComments(id))
-  }, [])
-
-  
-  const { isLoading, error, posts, isFinish } = useSelector((state) => state.posts);
-  const { comments } = useSelector((state) => state.comments);
-  console.log(comments)
-  
-  const object = posts.data.find(data => data.id === Number(id))
-
+  const detail = UseGetDetail(id)
+  const data = detail?.data
 
   const deletepost = async () => {
-    // axios.defaults.headers.common[
-    //   "Authorization"
-    // ] = `${response.headers.authorization}`;
+
     const response = await axios.delete(`https://01192mg.shop/api/auth/posts/${id}`, {
       headers: {
         "Authorization" : getCookieToken(),
@@ -53,12 +35,35 @@ const Detail = () => {
       }
     }
     )
-    console.log(response)
-    alert('삭제완료!')
-    navigate('/')
+    if (!response.data.success) {
+      alert('본인 글만 삭제할 수 있습니다!')
+    } else {
+      alert('삭제완료!')
+      navigate('/')
+    }
+  }
+
+  const updatepost = async () => {
+    const response = await axios.get('https://01192mg.shop/api/members/info', {
+      headers: {
+        "Authorization" : getCookieToken(),
+        "refresh-token" : getRefreshToken()
+      }
+    })
+
+  
+
+    if (response.data.data.nickname === data.nickname) {
+      navigate(`/update/${id}`)
+    } else {
+      alert('본인 글만 수정하세요!')
+    }
   }
 
 
+  if (detail === null) {
+    return <h1>isLoading</h1>
+  } 
 
   return (
     <>
@@ -68,12 +73,12 @@ const Detail = () => {
 
       <StWrapper>
         <StDiv >
-      <Button variant="contained">수정하기</Button>
+      <Button onClick={updatepost} variant="contained">수정하기</Button>
       <Button  onClick={deletepost} variant="contained" style={{backgroundColor:'grey'}}>
         삭제하기
       </Button>
       </StDiv>
-        <StImgBox style={{background: `url(${object.image_url})`, backgroundRepeat:'no-repeat', backgroundSize:'100% 100%' }}></StImgBox>
+        <StImgBox style={{background: `url(${data.imageUrl})`, backgroundRepeat:'no-repeat', backgroundSize:'100% 100%' }}></StImgBox>
         <StProfile>
           <CardHeader
             avatar={
@@ -86,15 +91,14 @@ const Detail = () => {
             //     <MoreVertIcon />
             //   </IconButton>
             // }
-            title={object.nickname}
+            title={data.nickname}
+            style={{fontWeihgt:'600'}}
           />
         </StProfile>
         <StContent>
-          <StSpan>title</StSpan>
-          <StSpan_1>{object.title}</StSpan_1>
-          <StSpan>content</StSpan>
-          <StSpan_1>{object.content}</StSpan_1>
-          <StSpan style={{ marginTop: "50px" }}>{object.price}</StSpan>
+          <StSpan_1 style={{fontWeight:'600', fontSize:'25px'}}>{data.title}</StSpan_1>
+          <StSpan_1>{data.content}</StSpan_1>
+          <StSpan style={{ marginTop: "50px", position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
       <Comment></Comment>
@@ -102,6 +106,7 @@ const Detail = () => {
     </>
   );
 };
+
 
 
 export default Detail;
@@ -147,7 +152,7 @@ const StImgBox = styled.div`
 `;
 
 const StProfile = styled.div`
-  width: 35%;
+  width: 500px;
   border: 2px solid #ececec;
   height: 100px;
   display: flex;
@@ -156,12 +161,13 @@ const StProfile = styled.div`
 `;
 
 const StContent = styled.div`
-  width: 35%;
+  width: 500px;
   border: 2px solid #ececec;
   height: 300px;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  position:relative;
 `;
 
 const StSpan = styled.div`
