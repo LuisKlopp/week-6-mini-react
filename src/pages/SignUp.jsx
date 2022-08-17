@@ -69,8 +69,13 @@ const SignUp = () => {
     try {
      await axios
     .get(`https://01192mg.shop/api/members/check/${username}`)
-   .then((res) => {
-       console.log(res.data)
+       .then((res) => {
+         if (res.data.success === false) {
+           alert('이미 있는 아이디입니다!')
+           return document.getElementById('username').focus()
+         } else {
+          alert('사용가능한 아이디입니다!')
+        }
    });
       
     } catch (err) {
@@ -104,17 +109,27 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (username === '') {
+    if (username == '') {
       alert('아이디를 입력해주세요')
-    } else if (nickname === '') {
+    return document.getElementById('username').focus()
+    } else if (nickname == '') {
       alert('닉네임을 입력해주세요')
-    } else if (password=== '') {
+    return document.getElementById('nickname').focus()
+
+    } else if (password== '') {
       alert('비밀번호를 입력해주세요')
-    } else if  (password !== checkPw) {
-        alert('비밀번호가 일치하지 않습니다')
-    } else if (checkPw === ''){
+      return document.getElementById('password').focus()
+
+    } else if  (password != checkPw) {
+      alert('비밀번호가 일치하지 않습니다')
+      return document.getElementById('c-password').focus()
+
+    } else if (checkPw == ''){
       alert('비밀번호를 확인해주세요')
+      return document.getElementById('c-password').focus()
+
     } 
+    
 
     const userInfo = {
       username,
@@ -122,13 +137,15 @@ const SignUp = () => {
       password,
     }
     console.log(userInfo)
-		axios
-			.post('https://01192mg.shop/api/members/signup', userInfo)
-			.then((res) => {
-					console.log(res.data)// 쿠키에 토큰 저장
-      });
+    if (userInfo) {
+      axios
+        .post('https://01192mg.shop/api/members/signup', userInfo)
+        .then((res) => {
+          console.log(res.data)// 쿠키에 토큰 저장
+        });
       alert('회원가입이 완료되었습니다')
       navigate('/login')
+    }
   };
 
   
@@ -159,6 +176,7 @@ const SignUp = () => {
 
 
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 5 }}>
+               
                 {/* 회원가입시 사진업도르 */}
                 {/* <label htmlFor="upload-photo">
 

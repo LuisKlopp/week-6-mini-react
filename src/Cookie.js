@@ -1,6 +1,9 @@
+import React from "react";
 import { Cookies } from "react-cookie"
+import { useNavigate } from "react-router-dom";
 
 const cookies = new Cookies();
+// const navigate = useNavigate(); 
 
 export const setAccessToken = (accessToken) => {
   const today = new Date();
@@ -34,5 +37,6 @@ export const getRefreshToken = () => {
 }
 
 export const removeCookieToken = () => {
+  alert('로그아웃되었습니다')
   return cookies.remove("user_token", { sameSite: "strict", path: "/"} && "fresh_token", { sameSite: "strict", path: "/"})
 }

@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import { getPost } from "../redux/modules/postSlice";
 import { getCookieToken, getRefreshToken } from "../Cookie";
-
+import { getDetailComments } from "../redux/modules/commentSlice";
 
 
 const Detail = () => {
@@ -29,14 +29,15 @@ const Detail = () => {
 
   // dispatch(getPost())
 
-  
-  // useEffect(() =>  {
-  //   readpost()
-  // }, [])
+  // console.log(id)
+  useEffect(() =>  {
+    dispatch(getDetailComments(id))
+  }, [])
 
   
   const { isLoading, error, posts, isFinish } = useSelector((state) => state.posts);
-
+  const { comments } = useSelector((state) => state.comments);
+  console.log(comments)
   
   const object = posts.data.find(data => data.id === Number(id))
 
@@ -96,7 +97,7 @@ const Detail = () => {
           <StSpan style={{ marginTop: "50px" }}>{object.price}</StSpan>
         </StContent>
 
-      {/* <Comment></Comment> */}
+      <Comment></Comment>
       </StWrapper>
     </>
   );
