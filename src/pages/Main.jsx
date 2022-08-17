@@ -18,11 +18,14 @@ import { getCookieToken } from "../Cookie";
 
 const Main = () => {
 
-  const [post, setPost] = useState([])
-  const dispatch = useDispatch();
+  const { isLoading, error, posts } = useSelector((state) => state.posts);
+
+  const arr = posts.data
+
+  const dispatch = useDispatch()
   
   useEffect(() =>  {
-    getPost()
+    dispatch(getPost())
   }, [])
 
   const navigate = useNavigate()
@@ -30,8 +33,7 @@ const Main = () => {
   // const state = useSelector((state) => state)
   // const { isLoading, error, posts } = useSelector((state) => state.posts)
 
-
-
+  console.log(posts)
   let button;
 
   if (cookie) {
@@ -40,19 +42,23 @@ const Main = () => {
     }}>글쓰기</Button>
   }
 
-  const getPost = 
-    async () => {
-        const data = await (await axios.get("https://01192mg.shop/api/posts")).data.data;
-        setPost(data)
-        return data
-    };
 
 
 
 
 
-    return (
-      <>
+
+
+    if(posts.data === undefined){
+      return (
+        <StWrapper>
+        <h1>로딩중!</h1>
+      </StWrapper>
+      )
+    } else {
+
+      return (
+        <>
         <GlobalStyle />
         {/* Filter */}
         <Filter />
@@ -61,25 +67,26 @@ const Main = () => {
           {button}
         </StDiv>
         <StList>
-          {post.map((stuff, i)=> {
-            return <StuffCard stuff={stuff} key={i}/>
+          {posts.data.map((stuff, i)=> {
+            return <StuffCard stuff={stuff} key={stuff.id}/>
           })}
         </StList>
       </>
     );
   }
+}
+  
 
 
-
-
-
-
-export default Main;
-
-const GlobalStyle = createGlobalStyle`
+  
+  
+  
+  export default Main;
+  
+  const GlobalStyle = createGlobalStyle`
 @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -96,6 +103,17 @@ const GlobalStyle = createGlobalStyle`
     
 	}
   `;
+
+
+const StWrapper = styled.div`
+  width: 100%;
+  /* height: 100vh; */
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StList = styled.div`
   width: 80%;
