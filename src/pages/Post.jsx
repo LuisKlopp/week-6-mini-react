@@ -62,7 +62,9 @@ const Post = () => {
     }
     console.log(obj)
     addpost(obj)
+    alert('등록완료!')
     navigate('/');
+    // location.reload()
     };
 
     const addpost = async (newList) => {

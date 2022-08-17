@@ -27,8 +27,9 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 //   }),
 // }));
 
-export default function StuffCard({stuff, i}) {
+export default function StuffCard({stuff, id}) {
   const [expanded, setExpanded] = React.useState(false);
+
 
 
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function StuffCard({stuff, i}) {
         // alt="Paella dish"
         style={{cursor:'pointer', backgroundImage: `url("${stuff.image_url}")`, backgroundSize:'230px 190px'}}
         onClick={() => {
-          navigate('/detail')
+          navigate(`/detail/${stuff.id}`)
         }}
       />
       <CardContent>

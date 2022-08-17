@@ -3,12 +3,13 @@ import axios from "axios";
 
 const initialState = {
   posts: [],
-  isLoading: false,
+  isLoading: true,
   error: null,
+  isFinish: false,
 };
 
 export const getPost = createAsyncThunk(
-  "post/getPosts",
+  "posts/getPost",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get("https://01192mg.shop/api/posts");
@@ -20,7 +21,7 @@ export const getPost = createAsyncThunk(
   }
 );
 
-export const addpost = createAsyncThunk("post/addPosts", async (newList) => {
+export const addpost = createAsyncThunk("posts/addPosts", async (newList) => {
   console.log(newList)
   axios.defaults.headers.common[
     "Authorization"
@@ -37,15 +38,17 @@ export const postSlice = createSlice({
   extraReducers: {
     [getPost.pending]: (state, action) => {
       state.isLoading = true;
+      state.isFinish = false;
     },
     [getPost.fulfilled]: (state, action) => {
-      state.isLoading = false
-      state.posts = action.payload
-      console.log(action.payload)
+      state.isLoading = false;
+      state.posts = action.payload;
+      state.isFinish = true;
     },
-    [addpost.rejected]: (state, action) => 
+    [getPost.rejected]: (state, action) => 
       {
-        state.isLoading= false
+        state.isLoading= false;
+        state.isFinish = true;
         state.posts = action.payload
       },
   },
