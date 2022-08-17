@@ -5,12 +5,15 @@ import Button from '@mui/material/Button';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import { Routes, Route, Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import Introduce from './Introduce';
-
+import { removeCookieToken } from '../Cookie'
+import {getCookieToken} from '../Cookie'
 
 const Header = () => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
-  // console.log(pathname)
+  const cookie = getCookieToken;
+  console.log(cookie)
+
   return (
     <>
       {/* Header */}
@@ -25,7 +28,8 @@ const Header = () => {
                 } else if (pathname === '/detail') {
                   navigate('/detail/login');
                 } 
-              }}>Login</Button>
+              }}>Login
+          </Button>
       </HeaderSideDiv>
       </LogoPosition>
       </HeaderContainer>
@@ -71,11 +75,3 @@ const HeaderSideDiv = styled.div`
 
 
 
-// <Button variant="contained" color="success" sx={{height:'40px', mt:2.5}} >
-// {cookie ? <div onClick={removeCookie}>Log Out</div> : <div onClick={()=>{ if (pathname === '/') {
-//     navigate('/login');
-//   } else if (pathname === '/detail') {
-//     navigate('/detail/login');
-//   } 
-// }}>Log In</div>}
-// </Button>
