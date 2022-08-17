@@ -28,7 +28,6 @@ const Update = () => {
   const data = detail?.data
 
 
-  console.log(data)
 
   const [state, setState] = useReducer(reducer, {
     title: '',
@@ -69,18 +68,22 @@ const Update = () => {
       file: imageUrl
     }
     console.log(obj)
-    addpost(obj)
-    alert('등록완료!')
+    if (title !== '' && content !== '' && price !== '') {
+    updatepost(obj)
+    alert('수정완료!')
     navigate('/');
+    } else {
+      alert('모든 정보를 입력해주세요')
+    }
     // location.reload()
     };
 
-    const addpost = async (newList) => {
+    const updatepost = async (newList) => {
       console.log(newList)
       // axios.defaults.headers.common[
       //   "Authorization"
       // ] = `${response.headers.authorization}`;
-      let response = await axios.post("https://01192mg.shop/api/auth/posts", newList, {
+      let response = await axios.put(`https://01192mg.shop/api/auth/posts/${id}`, newList, {
         headers: {
           "Authorization" : getCookieToken(),
           "refresh-token" : getRefreshToken()
@@ -170,7 +173,7 @@ const Update = () => {
         onClick={onSubmit}
         encType="multipart/form-data"
         >
-          등록하기
+          수정하기
         </Button>
       </StSubmitButton>
 

@@ -10,12 +10,15 @@ import Header from './components/Header';
 import react, {useEffect, useState} from 'react';
 import axios from 'axios'
 import Update from './pages/Update'
+import UseGetUser from "./hooks/UseGetUser"; 
 
 function App() {
 
-  useEffect(() => {
+  const user = UseGetUser()
+  console.log(user)
 
-  })
+
+
 
   // const readpost = async () => {
   //   const response = await axios.get(`https://01192mg.shop/api/posts/${id}`)
@@ -24,7 +27,7 @@ function App() {
 
   return (
     <>
-    <Header />
+    <Header user={user}/>
     <Routes>
 
       <Route path="/" element={<Main/>} >

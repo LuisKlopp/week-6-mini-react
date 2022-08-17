@@ -65,7 +65,7 @@ export default function StuffCard({stuff, id}) {
           <FavoriteIcon />
         </IconButton>
         {/* <IconButton aria-label="share"> */}
-          <StPrice>{stuff.price}</StPrice>
+          <StPrice>{stuff.price} 원</StPrice>
         {/* </IconButton> */}
         {/* <ExpandMore
           expand={expanded}
