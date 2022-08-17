@@ -7,12 +7,16 @@ import { Routes, Route, Link, useNavigate, useParams, useLocation } from 'react-
 import Introduce from './Introduce';
 import { removeCookieToken } from '../Cookie'
 import {getCookieToken} from '../Cookie'
+import UseGetUser from "../hooks/UseGetUser";
 
-const Header = () => {
+const Header = ({user}) => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
 
   const cookie = getCookieToken();
+  
+
+  
 
 
   return (
@@ -26,7 +30,7 @@ const Header = () => {
           <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button> */}
             {cookie ?
               <div style={{display:'flex'}}>
-                <div style={{ backgroundColor: 'beige', width: '200px' }}>님 환영합니다</div>
+                <div style={{ backgroundColor: 'beige', width: '200px', textAlign:'center',  lineHeight: `40px` }}>{user}님 환영합니다</div>
                 <Button variant="contained" color="success" onClick={() => {
                   removeCookieToken()
                   navigate('/')

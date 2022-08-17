@@ -53,9 +53,6 @@ const Detail = () => {
         "refresh-token" : getRefreshToken()
       }
     })
-
-  
-
     if (response.data.data.nickname === data.nickname) {
       navigate(`/update/${id}`)
     } else {

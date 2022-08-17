@@ -16,6 +16,7 @@ import { getCookieToken } from "../Cookie";
 
 
 
+
 const Main = () => {
 
   const { isLoading, error, posts, isFinish } = useSelector((state) => state.posts);
@@ -24,26 +25,13 @@ const Main = () => {
   const dispatch = useDispatch()
 
   const [arr, setArr] = useState([]) 
-  
+
   useEffect(() =>  {
     dispatch(getPost())
-
-    console.log(arr)
   }, [])
 
   const navigate = useNavigate()
   const cookie = getCookieToken()
-  // const state = useSelector((state) => state)
-  // const { isLoading, error, posts } = useSelector((state) => state.posts)
-
-  const readPost = async () => {
-    const data = await (await axios.get("https://01192mg.shop/api/posts")).data.data
-    console.log(data)
-    return data
-  }
-  // axios.get("https://01192mg.shop/api/posts").then(response => setArr(response.data.data))
-
-
 
 
   let button;
@@ -79,7 +67,7 @@ const Main = () => {
         </StDiv>
         <StList>
           {posts.data.map((stuff, i)=> {
-            return <StuffCard stuff={stuff} key={stuff.id}/>
+            return <StuffCard stuff={stuff} key={i}/>
           })}
         </StList>
       </>
