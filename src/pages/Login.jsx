@@ -68,7 +68,6 @@ const Login = () => {
       })
       setAccessToken(response.headers.authorization);
       setRefreshToken(response.headers['refresh-token'])
-      console.log(response)
       return navigate("/")
     }
     catch (err) {
