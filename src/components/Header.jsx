@@ -12,7 +12,6 @@ const Header = () => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const cookie = getCookieToken;
-  console.log(cookie)
 
   return (
     <>

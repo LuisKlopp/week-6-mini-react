@@ -18,14 +18,17 @@ import { getCookieToken } from "../Cookie";
 
 const Main = () => {
 
-  const { isLoading, error, posts } = useSelector((state) => state.posts);
+  const { isLoading, error, posts, isFinish } = useSelector((state) => state.posts);
 
-  const arr = posts.data
 
   const dispatch = useDispatch()
+
+  const [arr, setArr] = useState([]) 
   
   useEffect(() =>  {
     dispatch(getPost())
+
+    console.log(arr)
   }, [])
 
   const navigate = useNavigate()
@@ -33,7 +36,16 @@ const Main = () => {
   // const state = useSelector((state) => state)
   // const { isLoading, error, posts } = useSelector((state) => state.posts)
 
-  console.log(posts)
+  const readPost = async () => {
+    const data = await (await axios.get("https://01192mg.shop/api/posts")).data.data
+    console.log(data)
+    return data
+  }
+  // axios.get("https://01192mg.shop/api/posts").then(response => setArr(response.data.data))
+
+
+
+
   let button;
 
   if (cookie) {
@@ -41,7 +53,6 @@ const Main = () => {
       navigate('/post')
     }}>글쓰기</Button>
   }
-
 
 
 

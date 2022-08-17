@@ -6,8 +6,6 @@ import { useDispatch } from "react-redux";
 import dotImg from '../img/dotdot.jpg'
 import noImg from '../img/No-Image.png'
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import { addpost } from "../redux/modules/postSlice";
 import axios from 'axios'
 import { getCookieToken, getRefreshToken } from '../Cookie'
 
@@ -119,7 +117,7 @@ const Post = () => {
             id="outlined-multiline-flexible"
             onChange={onChange}
             name='title'
-            style={{fontWeight:'600', marginBottom:'20px'}}
+            style={{fontWeight:'600', marginBottom:'20px',  border:'2px solid #d5d5d5'}}
           ></StInput>
             <StSpan>내용</StSpan>
             <textarea
@@ -128,7 +126,7 @@ const Post = () => {
             name='content'
             onChange={onChange}
             sx={{mt:2, ml:3}}
-            style={{height:'120px',width:'90%', resize:'none',   borderRadius: '10px', fontSize:'17px',  paddingLeft:'10px'}}
+            style={{height:'120px',width:'90%', resize:'none',   borderRadius: '10px', fontSize:'17px', fontWeight:'600', padding:'10px 10px', border:'2px solid #d5d5d5'}}
           ></textarea>
           </StContent>
 
@@ -142,6 +140,7 @@ const Post = () => {
               onChange={onChange}
               name='price'
               type='number'
+              style={{ border:'2px solid #d5d5d5'}}
               />
               <PriceSpan>원</PriceSpan>
             </StPrice>

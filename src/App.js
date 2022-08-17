@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import react, {useEffect, useState} from 'react';
 import axios from 'axios'
+import Update from './pages/Update'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="signup" element={<SignUp/>}/>  
         </Route>
       <Route path="/post" element={<Post/>}/>
+      <Route path="/update/:id" element={<Update/>}/>
 
       {/* <Route path="/detail/:id" element={<Detail/>}/> */}
 
