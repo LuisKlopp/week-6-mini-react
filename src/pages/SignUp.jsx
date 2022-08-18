@@ -18,27 +18,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Identity } from "@mui/base";
 
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
 const theme = createTheme();
-
-// const reducer = (state, action) => {
-//   return {
-//     ...state,
-//     [action.name]: action.value,
-//   }
-// }
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -53,6 +33,8 @@ const SignUp = () => {
   const [passwordInput, setPasswordInput] = React.useState(false);
   const [passwordCheck, setPasswordCheck] = React.useState(false);
 
+  const [idErrorCheck, setIdErrorCheck] = React.useState(true);
+
 
 
     // //회원가입 유효성 검사
@@ -64,16 +46,20 @@ const SignUp = () => {
     }
   };
 
+  // 중복확인
   const overlapIdCheck = async () => {
-    console.log('username',username)
+    console.log('username', username)
+
     try {
      await axios
     .get(`https://01192mg.shop/api/members/check/${username}`)
        .then((res) => {
          if (res.data.success === false) {
            alert('이미 있는 아이디입니다!')
+           setIdErrorCheck(true)
            return document.getElementById('username').focus()
          } else {
+          setIdErrorCheck(false)
           alert('사용가능한 아이디입니다!')
         }
    });
@@ -82,7 +68,6 @@ const SignUp = () => {
       console.log(err)
     }
   }
-
   const checkNickName = (e) => {
     if ((e.target.value).length >= 3 && (e.target.value).length <= 10) {
       setNickame(e.target.value);
@@ -108,6 +93,7 @@ const SignUp = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(idErrorCheck)
 
     if (username == '') {
       alert('아이디를 입력해주세요')
@@ -128,9 +114,11 @@ const SignUp = () => {
       alert('비밀번호를 확인해주세요')
       return document.getElementById('c-password').focus()
 
-    } 
+    } else if(idErrorCheck) {
+      alert('중복확인 체크해주세요')
+      return document.getElementById('username').focus()
+    }
     
-
     const userInfo = {
       username,
       nickname,
@@ -148,7 +136,6 @@ const SignUp = () => {
     }
   };
 
-  
 
   return (
     <SignUpContainer>
