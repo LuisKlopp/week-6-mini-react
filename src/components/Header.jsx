@@ -12,8 +12,8 @@ import UseGetUser from "../hooks/UseGetUser";
 const Header = () => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
-  const id = pathname.slice(-1)
-
+  const id = pathname.slice(8)
+  console.log(id)
   const cookie = getCookieToken();
 
   const username = UseGetUser();
