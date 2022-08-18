@@ -68,7 +68,8 @@ const Login = () => {
       })
       setAccessToken(response.headers.authorization);
       setRefreshToken(response.headers['refresh-token'])
-      return navigate("/")
+      navigate("/")
+      window.location.reload()
     }
     catch (err) {
       console.log(err)
@@ -162,6 +163,7 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   
   `
 const GlobalStyle = createGlobalStyle`
@@ -174,7 +176,7 @@ const GlobalStyle = createGlobalStyle`
 const WrapperPosition = styled.div`
   position: absolute;
   z-index: 1;
-  top: 400px;
+  /* top: 400px; */
   width: 30%;
   height: 600px;
   padding: 0 24px;

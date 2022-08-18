@@ -8,7 +8,6 @@ const cookies = new Cookies();
 export const setAccessToken = (accessToken) => {
   const today = new Date();
   const expireDate = today.setDate(today.getDate() + 7);
-  console.log(accessToken)
   return cookies.set("user_token", accessToken, {
     sameSite: "strict",
     path: "/",
@@ -39,3 +38,4 @@ export const getRefreshToken = () => {
 export const removeCookieToken = () => {
   alert('로그아웃되었습니다')
   return cookies.remove("user_token", { sameSite: "strict", path: "/"} )
+}

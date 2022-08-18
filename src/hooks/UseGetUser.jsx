@@ -12,7 +12,6 @@ const UseGetUser = () => {
         "refresh-token" : getRefreshToken()
       }
     })
-    console.log(response.data.data.nickname)
     setUser(response.data.data.nickname)
   }
   

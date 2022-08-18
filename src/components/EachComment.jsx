@@ -1,28 +1,3 @@
-// import * as React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getDetailComments } from '../redux/modules/commentSlice';
-// import CommentList from './CommentList';
-
-// export default function EachComment() {
-//   const { comments } = useSelector((state) => state.comments)
-//   const dispatch = useDispatch();
-
-//   React.useEffect(() => {
-//     dispatch(getDetailComments())
-//   }, [dispatch])
-//   console.log(comments)
-  
-//   return (
-//     <CommentList/>
-    
-//       // comments.length >0 ?? comments.map((comment, idx) => (
-//       // <CommentList  key={comment.id} comment={comment} />)
-//   //  )
-    
-    
-//   )
-// }
-
 import React, { useEffect, useState} from 'react'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -37,6 +12,9 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { editContent, deleteContent } from '../redux/modules/commentSlice';
 import moment from "moment";
+import UseGetUser from '../hooks/UseGetUser';
+import { getCookieToken, getRefreshToken } from '../Cookie';
+import axios from 'axios'
 
 const EachComment = ({ comment }) => {
   const  data  = useSelector((state) => state.comments)
@@ -67,6 +45,28 @@ const EachComment = ({ comment }) => {
   const deleteBtn = (id) => {
     dispatch(deleteContent(id))
   }
+
+  const name = UseGetUser()
+
+
+  let button;
+  let button_1;
+  if (name === comment.author) {
+    if (editState === true) {
+      button = <CheckIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={() => { completeBtn(comment.id) }} />
+      button_1 = <DeleteIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={() => { deleteBtn(comment.id)}}></DeleteIcon>
+    } else {
+      button =<EditIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={ editBtn}/>
+      button_1 = <DeleteIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={() => { deleteBtn(comment.id)}}></DeleteIcon>
+    }
+  }
+
+  
+
+
+
+
+
   return (
     <>
     <List sx={{ maxWidth: 500, bgcolor: 'background.paper'}}>
@@ -93,8 +93,8 @@ const EachComment = ({ comment }) => {
               
               <div >
                 <div style={{display:'flex',justifyContent:'center'}}>
-              {editState ? <CheckIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={() => { completeBtn(comment.id) }} /> : <EditIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={ editBtn}/>}
-              <DeleteIcon sx={{ mr: 3, cursor: 'pointer' }} onClick={() => { deleteBtn(comment.id)}}></DeleteIcon>
+              {button}
+              {button_1}
                 </div>
                 <div>
                   <div style={{ marginRight: '20px',marginTop:'20px'}}>{moment().from(moment(comment.modifiedAt.slice(0, 16)))}</div>

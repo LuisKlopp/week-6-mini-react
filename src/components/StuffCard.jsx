@@ -50,7 +50,7 @@ export default function StuffCard({stuff, id}) {
         height="194"
         // image={stuff.image}
         // alt="Paella dish"
-        style={{cursor:'pointer', backgroundImage: `url("${stuff.image_url}")`, backgroundSize:'230px 190px'}}
+        style={{cursor:'pointer', backgroundImage: `url("${stuff.imageUrl}")`, backgroundSize:'230px 190px'}}
         onClick={() => {
           navigate(`/detail/${stuff.id}`)
         }}
