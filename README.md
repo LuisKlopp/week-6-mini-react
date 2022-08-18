@@ -2,7 +2,7 @@
 
 사용하지 않는 물건을 공유하고 댓글로 소통하는 중고거래사이트입니다.
 -----------------------------------------
-<img src="당근나라.png" width="450px" height="300px" ></img><br/>
+(carrotcountry.png)
 🟨[사이트 바로가기](https://carrotcountry.netlify.app/)<br/>
 🖥[시연영상보기]
 <br/>
