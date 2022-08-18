@@ -17,14 +17,6 @@ function App() {
   const user = UseGetUser()
 
 
-
-
-  // const readpost = async () => {
-  //   const response = await axios.get(`https://01192mg.shop/api/posts/${id}`)
-  //   console.log(response) 
-  // }
-
-
   return (
     <>
     <Header user={user}/>
