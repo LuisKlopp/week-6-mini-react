@@ -19,7 +19,6 @@ const Comment = () => {
   const cookie = getCookieToken();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const cookie = getCookieToken()
  
 
   const inputComment = (e) => {
