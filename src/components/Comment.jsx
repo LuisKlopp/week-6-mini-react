@@ -39,9 +39,11 @@ const Comment = () => {
       id: Number(id),
       content: value,
     }
-
-
     dispatch(addCommentList(newList))
+
+    // value = null;
+    alert('등록완료!')
+    setValue('')
   }
   
   let commentText;

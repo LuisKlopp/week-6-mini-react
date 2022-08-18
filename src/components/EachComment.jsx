@@ -44,6 +44,7 @@ const EachComment = ({ comment }) => {
   }
   const deleteBtn = (id) => {
     dispatch(deleteContent(id))
+    alert('삭제완료!')
   }
 
   const name = UseGetUser()
