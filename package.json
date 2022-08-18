@@ -1,4 +1,12 @@
 {
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "mockserver": "npx json-server --watch --delay 500 --port 3001 db.json",
+    "dev": "concurrently \"yarn start\" \"yarn mockserver\""
+  },
   "name": "react-market",
   "version": "0.1.0",
   "private": true,
@@ -29,6 +37,7 @@
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.0"
   },
+
   "scripts": {   
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",

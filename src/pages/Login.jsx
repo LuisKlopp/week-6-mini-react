@@ -60,16 +60,23 @@ const Login = () => {
     }
 
     try {
-      let response = await axios({
+      const response = await axios({
         method: 'POST',
         url: 'https://01192mg.shop/api/members/login',
         data: loginInfo,
         // withCredentials: true,
       })
-      setAccessToken(response.headers.authorization);
-      setRefreshToken(response.headers['refresh-token'])
-      navigate("/")
-      window.location.reload()
+
+      // if (response.data.error)
+      if (response.data.success === false) {
+        alert('아이디 또는 비밀번호를 확인해주세요!')
+        navigate('/login')
+      } else {
+        setAccessToken(response.headers.authorization);
+        setRefreshToken(response.headers['refresh-token'])
+        navigate("/")
+        window.location.reload()
+      }
     }
     catch (err) {
       console.log(err)
