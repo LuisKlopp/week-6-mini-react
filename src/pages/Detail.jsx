@@ -101,7 +101,7 @@ const Detail = () => {
         </StProfile>
         <StContent>
           <StSpan_1 style={{fontWeight:'600', fontSize:'25px'}}>{data.title}</StSpan_1>
-          <StSpan_1 style={{ fontSize: '24px' }}>{data.content}</StSpan_1>
+          <StSpan_1 style={{ fontSize: '24px', width: '100%' }}>{data.content}</StSpan_1>
           <StSpan style={{ fontSize:'30px', position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
