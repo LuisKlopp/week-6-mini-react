@@ -6,7 +6,7 @@ import dotImg from '../img/dotdot.jpg'
 
 const Introduce = () => {
   const { pathname } = useLocation();
-
+  
   return (
     <IntroContainer>
       <IntroBox>

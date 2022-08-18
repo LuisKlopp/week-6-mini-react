@@ -117,7 +117,7 @@ const StWrapper = styled.div`
 const StList = styled.div`
   width: 80%;
   /* height: vh; */
-  margin:0 auto;
+  margin:0 auto 100px auto;
   display: flex;
   justify-content: space-evenly;
   /* align-items: center; */

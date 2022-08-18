@@ -56,8 +56,8 @@ export default function StuffCard({stuff, id}) {
         }}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {stuff.content}
+        <Typography variant="body2" color="text.secondary" sx={{fontSize:'20px'}}>
+          {stuff.content.length > 20 ? stuff.content.slice(0,20)+'...' :stuff.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
