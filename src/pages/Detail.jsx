@@ -101,8 +101,8 @@ const Detail = () => {
         </StProfile>
         <StContent>
           <StSpan_1 style={{fontWeight:'600', fontSize:'25px'}}>{data.title}</StSpan_1>
-          <span style={{ fontSize: '24px', width:'300px' ,height:'100px'}}>{data.content}</span>
-          <StSpan style={{ fontSize:'30px', position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
+          <div style={{ fontSize: '24px',padding:'1rem', margin:'0 16px'}}>{data.content}</div>
+          <StSpan style={{ fontSize:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
           <CommentContainer>
@@ -171,14 +171,15 @@ const StProfile = styled.div`
 const StContent = styled.div`
   width: 500px;
   border: 2px solid #ececec;
-  height: 300px;
   margin-top: 40px;
+  margin-bottom: 40px;
   position:relative;
   overflow-wrap: break-word;
 `;
 
 const StSpan = styled.div`
-  margin:30px 0px 0px 30px;
+  margin:30px;
+  float: right;
   font-weight:600;
   `
 
