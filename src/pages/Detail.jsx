@@ -90,23 +90,18 @@ const Detail = () => {
                 R
               </Avatar>
             }
-            // action={
-            //   <IconButton aria-label="settings">
-            //     <MoreVertIcon />
-            //   </IconButton>
-            // }
+
             title={data.nickname}
-            // style={{fontWeihgt:'600'}}
           />
         </StProfile>
         <StContent>
-          <StSpan_1 style={{fontWeight:'600', fontSize:'25px'}}>{data.title}</StSpan_1>
+          <StSpan_1>{data.title}</StSpan_1>
           <div style={{ fontSize: '24px',padding:'1rem', margin:'0 16px'}}>{data.content}</div>
-          <StSpan style={{ fontSize:'30px'}}>{data.price}원</StSpan>
+          <StSpan >{data.price}원</StSpan>
         </StContent>
 
           <CommentContainer>
-            <Comment comments={comments}></Comment>
+          <Comment comments={comments}></Comment>
           </CommentContainer>
  
         
@@ -172,7 +167,7 @@ const StContent = styled.div`
   width: 500px;
   border: 2px solid #ececec;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   position:relative;
   overflow-wrap: break-word;
 `;
@@ -181,34 +176,22 @@ const StSpan = styled.div`
   margin:30px;
   float: right;
   font-weight:600;
+  font-size:30px;
   `
 
 const StSpan_1 = styled.div`
   margin:30px 0px 0px 30px;
-/* font-weight:600 */
+  font-weight:600;
+  font-size:25px;
 `
-const IntroContainer = styled.div`
-  margin-top: 50px;
-  width: 100%;
-  height: 150px;
-  background-image: url(${dotImg});
-  position: relative;
-`
-const IntroBox = styled.div`
-  font-family: 'Cafe24Ohsquareair';
-  font-size: 30px;
-  line-height: 50px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-`
+
 const StDiv = styled.div`
   width:200px;
   display: flex;
   justify-content: space-between;
 `
 const CommentContainer = styled.div`
-  height:100vh;
+  height: 100%;
   margin-bottom: 100px;
 `
 

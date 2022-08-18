@@ -24,16 +24,17 @@ const Post = () => {
     title: '',
     content: '',
     price: '',
+    file: '',
   })
 
-  const { title, content, price } = state;
+  const { title, content, price, file } = state;
 
 
   const onChange = (e) => {
     setState(e.target)
   }
 
-  const [imageUrl, setImageUrl] = useState(null); 
+  const [imageUrl, setImageUrl] = useState(null);
   const [imgFile, setImgFile] = useState("")
   const imgRef = useRef();
 
@@ -50,8 +51,8 @@ const Post = () => {
     };
   }
 
-  const onSubmit =  () =>  {
-    if(title ==='' || content ==='' ||price === '') return alert('빈칸을 채워주세요!')
+  const onSubmit = () => {
+    if (title === '' || content === '' || price === ''||file==='') return alert('빈칸을 채워주세요!')
     const obj = {
       title,
       content,
