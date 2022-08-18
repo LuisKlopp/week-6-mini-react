@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import MUIButton from "../components/Button";
 import StuffCard from "../components/StuffCard";
 import { useNavigate, Outlet } from "react-router-dom";
-import data from "../components/CardTest";
 import Button from '@mui/material/Button';
 import axios from "axios";
 import Filter from '../components/Filter';
@@ -76,8 +75,17 @@ const Main = () => {
 }
   
 
+// {dummyData.filter((val) =>{
+//   if(searchTerm == ""){
+//     return val
+//   }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
+//     return val
+//   }
+// }
+// }).map(data =>{
+//   return <p>dummyData.title</p>
+// })}
 
-  
   
   
   export default Main;

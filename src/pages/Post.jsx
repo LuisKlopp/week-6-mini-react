@@ -33,7 +33,7 @@ const Post = () => {
     setState(e.target)
   }
 
-  const [imageUrl, setImageUrl] = useState(null); 
+  const [imageUrl, setImageUrl] = useState(null);
   const [imgFile, setImgFile] = useState("")
   const imgRef = useRef();
 
@@ -46,30 +46,26 @@ const Post = () => {
     reader.onloadend = () => {
       setImageUrl(reader.result);
       setImgFile(file)
-      
+      console.log(reader.result)
     };
   }
 
-  const onSubmit =  () =>  {
-    if(title ==='' || content ==='' ||price === '') return alert('빈칸을 채워주세요!')
+  const onSubmit = () => {
+    if (title === '' || content === '' || price === '') return alert('빈칸을 채워주세요!')
     const obj = {
       title,
       content,
       price,
       file: imageUrl
     }
-    console.log(obj)
     addpost(obj)
     alert('등록완료!')
     navigate('/');
-    // location.reload()
     };
 
     const addpost = async (newList) => {
       console.log(newList)
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `${response.headers.authorization}`;
+ 
       let response = await axios.post("https://01192mg.shop/api/auth/posts", newList, {
         headers: {
           "Authorization" : getCookieToken(),
@@ -86,7 +82,6 @@ const Post = () => {
   return (
     <>
       <GlobalStyle />
-      {/* Introuduce */}
     
 
       <StWrapper>
@@ -122,7 +117,6 @@ const Post = () => {
             <StSpan>내용</StSpan>
             <textarea
             id="outlined-multiline-flexible"
-            // label=""
             name='content'
             onChange={onChange}
             sx={{mt:2, ml:3}}
@@ -136,7 +130,6 @@ const Post = () => {
               <PriceSpan>Price:</PriceSpan>
               <StInput
               id="outlined-multiline-flexible"
-              // label=""
               onChange={onChange}
               name='price'
               type='number'
@@ -230,9 +223,7 @@ const StSpan = styled.div`
   font-family: 'Cafe24Ohsquareair';
   `
 
-// const StSpan_1 = styled.div`
-// margin:30px 0px 0px 30px;
-// `
+
 const StPriceBox = styled.div`
   margin-top: 50px;
   margin-left: 0px;

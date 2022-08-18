@@ -143,7 +143,7 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   sx={{ mt: 1, mb: 2, p: 1.5 }}
-                  onClick={()=>{navigate(-1)}}
+                  onClick={()=>{navigate('/')}}
                   >
                   뒤로가기
                 </Button>

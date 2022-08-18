@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
@@ -8,16 +8,28 @@ import Introduce from './Introduce';
 import { removeCookieToken } from '../Cookie'
 import {getCookieToken} from '../Cookie'
 import UseGetUser from "../hooks/UseGetUser";
+import axios from "axios"
 
 const Header = () => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
-  const id = pathname.slice(-1)
-
+  const id = pathname.slice(8)
   const cookie = getCookieToken();
-
   const username = UseGetUser();
+  const [searchText, setSearchText] = useState('')
+
+
+  const onChange = (e) => {
+    console.log(e.target.value)
+    setSearchText(e.target.value)
+  }
+
+  const searchCard = async () => {
+    const response = await axios.get('https://01192mg.shop/api/posts/search?title===aaa')
+    console.log(response)
+  }
   
+
 
   
 
@@ -30,8 +42,8 @@ const Header = () => {
           <LogoFont onClick={() => { navigate('/') }}>🥕당근나라</LogoFont>
       <HeaderSideDiv>
         <div>
-          <Input placeholder="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
-          <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button>
+          <Input placeholder="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} onChange={onChange} />
+          <Button variant="text" style={{marginLeft:'-50px'}} onClick={searchCard}><ZoomInIcon/></Button>
           </div>
             {cookie ?
               <div style={{display:'flex'}}>
