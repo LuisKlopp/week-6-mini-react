@@ -101,7 +101,7 @@ const Detail = () => {
         </StProfile>
         <StContent>
           <StSpan_1 style={{fontWeight:'600', fontSize:'25px'}}>{data.title}</StSpan_1>
-          <StSpan_1 style={{ fontSize: '24px' }}>{data.content}</StSpan_1>
+          <span style={{ fontSize: '24px', width:'300px' ,height:'100px'}}>{data.content}</span>
           <StSpan style={{ fontSize:'30px', position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
@@ -172,10 +172,9 @@ const StContent = styled.div`
   width: 500px;
   border: 2px solid #ececec;
   height: 300px;
-  display: flex;
-  flex-direction: column;
   margin-top: 40px;
   position:relative;
+  overflow-wrap: break-word;
 `;
 
 const StSpan = styled.div`
