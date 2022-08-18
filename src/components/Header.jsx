@@ -9,12 +9,15 @@ import { removeCookieToken } from '../Cookie'
 import {getCookieToken} from '../Cookie'
 import UseGetUser from "../hooks/UseGetUser";
 
-const Header = ({user}) => {
+const Header = () => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const id = pathname.slice(-1)
 
   const cookie = getCookieToken();
+
+  const username = UseGetUser();
+  
 
   
 
@@ -26,11 +29,13 @@ const Header = ({user}) => {
       <LogoPosition>
           <LogoFont onClick={() => { navigate('/') }}>🥕당근나라</LogoFont>
       <HeaderSideDiv>
-          {/* <Input defaultValue="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
-          <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button> */}
+        <div>
+          <Input placeholder="Search" inputProps={ariaLabel} style={{ marginRight: '30px' }} />
+          <Button variant="text" style={{marginLeft:'-50px'}} ><ZoomInIcon/></Button>
+          </div>
             {cookie ?
               <div style={{display:'flex'}}>
-                <div style={{ backgroundColor: 'beige', width: '200px', textAlign:'center',  lineHeight: `40px` }}>{user}님 환영합니다</div>
+                <div style={{ backgroundColor: 'beige', width: '200px', textAlign:'center', lineHeight:"50px" }}>{username}님 환영합니다</div>
                 <Button variant="contained" color="success" onClick={() => {
                   removeCookieToken()
                   navigate('/')
@@ -89,6 +94,8 @@ const HeaderSideDiv = styled.div`
   margin-top: 40px;
   margin-right: 20px;
   margin-left: 30px;
+  display: flex;
+  height:50px;
 `
 
 
