@@ -37,6 +37,14 @@
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.0"
   },
+
+  "scripts": {   
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "yarn run build"
+  },
+  
   "eslintConfig": {
     "extends": [
       "react-app",
