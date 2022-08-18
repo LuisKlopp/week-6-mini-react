@@ -15,23 +15,23 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import UseGetComment from "../hooks/UseGetComment"
+import { getCookieToken } from '../Cookie';
 
 
-
-const Comment = () => {
+const Comment = ({comments}) => {
 
   const [value, setValue] = useState('')
-  const { comments } = useSelector((state) => state.comments)
-  console.log(comments.data)
+
   const dispatch = useDispatch();
   const { id } = useParams();
-  useEffect(() => {
-    dispatch(getDetailComments(id))
-  }, [])
-  console.log(id)
+  const cookie = getCookieToken()
+ 
+
   const inputComment = (e) => {
     setValue(e.target.value)
   }
+
 
   const addComment = async () => {
     if (value == '') return
@@ -40,26 +40,30 @@ const Comment = () => {
       id: Number(id),
       content: value,
     }
-    // console.log(typeof newList.content)
     dispatch(addCommentList(newList))
-    // const response = await axios.post(`https://01192mg.shop/api/auth/comments/${newList.id}`, newList.content, 
-    //   {
-    //     headers: {
-    //     "Content-Type": `application/json`,
-    //     "Authorization": getCookieToken(),
-    //     "refresh-token": getRefreshToken()
-    //   }
-    // }
-    // )
-    // console.log(response)
-    // return response.data
+    alert('등록완료!')
+    window.location.reload()
+
   }
+  
+  let commentText;
+  if (cookie) { 
+      commentText =   <StBox2>
+    <Box sx={{ width: 350, maxWidth: '100%', }}>
+      <TextField fullWidth label="comment" id="fullWidth" value={value} onChange={inputComment} />
+    </Box>
+    <Button variant="contained" onClick={addComment} style={{ backgroundColor: '#c95f19' }} sx={{ ml: 3 }}>SUBMIT</Button>
+  </StBox2>
+ }
+
+
+
   
 
   return (
       <>
       <StBox1>
-        {comments.data.map(
+        {comments?.data.map(
           comment=> <List sx={{ maxWidth: 500, bgcolor: 'background.paper'}}>
           <ListItem alignItems="flex-start" sx={{borderBottom: '1px solid lightgray'}}>
             <ListItemAvatar>
@@ -88,14 +92,9 @@ const Comment = () => {
           </ListItem>
         </List>
         )}
-        {/* <CommentList comments={comments.data} /> */}
+        {/* <CommentList comments={comments?.data} /> */}
         </StBox1>
-        <StBox2>
-          <Box sx={{ width: 350, maxWidth: '100%', }}>
-            <TextField fullWidth label="comment" id="fullWidth" value={value} onChange={inputComment} />
-          </Box>
-          <Button variant="contained" onClick={addComment} style={{ backgroundColor: '#c95f19' }} sx={{ ml: 3 }}>SUBMIT</Button>
-        </StBox2>
+          {commentText}
       </>
     )
   }

@@ -15,7 +15,6 @@ import UseGetUser from "./hooks/UseGetUser";
 function App() {
 
   const user = UseGetUser()
-  console.log(user)
 
 
 
