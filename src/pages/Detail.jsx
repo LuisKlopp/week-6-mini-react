@@ -96,16 +96,19 @@ const Detail = () => {
             //   </IconButton>
             // }
             title={data.nickname}
-            style={{fontWeihgt:'600'}}
+            // style={{fontWeihgt:'600'}}
           />
         </StProfile>
         <StContent>
           <StSpan_1 style={{fontWeight:'600', fontSize:'25px'}}>{data.title}</StSpan_1>
-          <StSpan_1>{data.content}</StSpan_1>
-          <StSpan style={{ marginTop: "50px", position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
+          <StSpan_1 style={{ fontSize: '24px' }}>{data.content}</StSpan_1>
+          <StSpan style={{ fontSize:'30px', position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
-        <Comment comments={comments}></Comment>
+          <CommentContainer>
+            <Comment comments={comments}></Comment>
+          </CommentContainer>
+ 
         
       </StWrapper>
     </>
@@ -181,7 +184,7 @@ const StSpan = styled.div`
   `
 
 const StSpan_1 = styled.div`
-margin:30px 0px 0px 30px;
+  margin:30px 0px 0px 30px;
 /* font-weight:600 */
 `
 const IntroContainer = styled.div`
@@ -204,7 +207,10 @@ const StDiv = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
+const CommentContainer = styled.div`
+  height:100vh;
+  margin-bottom: 100px;
+`
 
 
 
