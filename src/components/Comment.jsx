@@ -70,13 +70,6 @@ const Comment = () => {
          )} 
         </StBox1> 
 
-
-        {/* <StBox2>
-          <Box sx={{ width: 350, maxWidth: '100%', }}>
-            <TextField fullWidth label="comment" id="fullWidth" value={value} onChange={inputComment} />
-          </Box>
-          <Button variant="contained" onClick={addComment} style={{ backgroundColor: '#c95f19' }} sx={{ ml: 3 }}>SUBMIT</Button>
-        </StBox2> */}
         {commentText}
 
 
