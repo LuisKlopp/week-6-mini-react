@@ -1,4 +1,12 @@
+
 {
+  
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "yarn run build"
+  },
   "name": "react-market",
   "version": "0.1.0",
   "private": true,
@@ -55,4 +63,5 @@
       "last 1 safari version"
     ]
   }
+  
 }
