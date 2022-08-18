@@ -14,19 +14,20 @@ import axios from 'axios'
 import { getPost } from "../redux/modules/postSlice";
 import { getCookieToken, getRefreshToken } from "../Cookie";
 import UseGetDetail from "../hooks/UseGetDetail"; 
-import { getDetailComments } from "../redux/modules/commentSlice";
-
+import UseGetComment from "../hooks/UseGetComment"
 
 
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { comments } = useSelector((state) => state.comments)
-  console.log(comments)
+
   const {id} = useParams();
 
   const detail = UseGetDetail(id)
+  const comments = UseGetComment(id)
+
   const data = detail?.data
+
 
 
   const deletepost = async () => {
@@ -101,7 +102,7 @@ const Detail = () => {
           <StSpan style={{ marginTop: "50px", position:'absolute', right:'30px', bottom:'30px'}}>{data.price}원</StSpan>
         </StContent>
 
-        <Comment></Comment>
+        <Comment comments={comments}></Comment>
         
       </StWrapper>
     </>
