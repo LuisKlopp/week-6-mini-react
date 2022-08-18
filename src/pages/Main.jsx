@@ -59,7 +59,7 @@ const Main = () => {
         <>
         <GlobalStyle />
         {/* Filter */}
-        <Filter />
+        {/* <Filter /> */}
         <Outlet></Outlet>
         <StDiv>
           {button}
