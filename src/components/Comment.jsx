@@ -86,7 +86,6 @@ export default Comment
 
 const StBox1 = styled.div`
   width: 500px;
-  height:55px;
   margin-top:50px;
   border-radius: 20px;
   position:sticky;
