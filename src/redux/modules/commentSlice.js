@@ -13,7 +13,6 @@ export const getDetailComments = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(`https://01192mg.shop/api/comments/${payload}`);
-      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -24,12 +23,6 @@ export const getDetailComments = createAsyncThunk(
 export const addCommentList = createAsyncThunk(
   "comment/addComment",
   async (newList) => {
-    console.log(newList)
-    
-  // axios.defaults.headers.common[
-  //   "Authorization"
-  //   ] = `${response.headers.authorization}`;
-    // console.log(newList)
     const response = await axios.post(`https://01192mg.shop/api/auth/comments/${newList.id}`, newList.content,
       {
         headers: {
@@ -38,9 +31,33 @@ export const addCommentList = createAsyncThunk(
             "refresh-token": getRefreshToken()
           }
   });
-  console.log(response.data)
   return response.data
-})
+  })
+
+export const editContent = createAsyncThunk("comment/editComment", async (payload) => {
+  const response = await axios.put(`https://01192mg.shop/api/auth/comments/${payload.id}`, { content: payload.content },
+  {
+    headers: {
+        "Content-Type": `application/json`,
+        "Authorization": getCookieToken(),
+        "refresh-token": getRefreshToken()
+      }
+});
+    return { payload }
+  })
+
+export const deleteContent = createAsyncThunk("commet/deleteComment", async (id) => {
+    const response = await axios.delete(`https://01192mg.shop/api/auth/comments/${id}`,{
+      headers: {
+          "Content-Type": `application/json`,
+          "Authorization": getCookieToken(),
+          "refresh-token": getRefreshToken()
+        }
+  });
+    return id
+  })
+  
+
 
 export const commentSlice = createSlice({
   name: 'comments',
@@ -48,18 +65,25 @@ export const commentSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getDetailComments.fulfilled]: (state, action) => {
-      // console.log(action.payload[0])
       state.comments = action.payload;
-      state.isLoading = true;
     },
     [getDetailComments.rejected]: (state, action) => {
       state.isLoading = false
-      console.log(action)
     },
-    // [addCommentList.fulfilled]: (state, action) => 
-    //   {(console.log(action.payload))},
-      // {data.comments.push(action.payload)},
+    [addCommentList.fulfilled]: (state, action) => 
+    { state.comments.data.push(action.payload.data) },
     
+    [editContent.fulfilled]: (state, { payload }) => {
+      state.comments.data = state.comments.data.map((comment) =>
+      comment.id === payload.payload.id
+          ? { ...comment, content: payload.payload.content }
+          : comment
+      )
+    },
+    [deleteContent.fulfilled]: (state, { payload }) => { 
+      state.comments.data = state.comments.data.filter((comment) => comment.id !==  payload)
+    },
+
   },
 })
 

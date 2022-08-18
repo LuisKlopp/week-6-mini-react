@@ -10,10 +10,10 @@ const Introduce = () => {
   return (
     <IntroContainer>
       <IntroBox>
-      
+        {/* {console.log(pathname)}       */}
         {pathname === '/'||pathname === '/login'? 
-          ['사용하지 않는 물건을 공유 해보세요.',<br/>,'댓글로 소통해보아요.'] : pathname ==='/detail' ?
-          '상세 페이지':'상품 등록하기'}
+          ['사용하지 않는 물건을 공유 해보세요.',<br/>,'댓글로 소통해보아요.'] : pathname ==='/post/' ?
+          '상품 등록하기':'상세 페이지'}
           
         </IntroBox>
       </IntroContainer>

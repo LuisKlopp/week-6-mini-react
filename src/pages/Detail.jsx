@@ -21,6 +21,9 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
+  // const {comments} = useSelector((state)=> console.log(state.comments))
+  // const { comments } = useSelector((state) => state.comments)
+
   const {id} = useParams();
 
   const detail = UseGetDetail(id)
