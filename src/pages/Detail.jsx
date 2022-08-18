@@ -21,8 +21,6 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
-  // const {comments} = useSelector((state)=> console.log(state.comments))
-  // const { comments } = useSelector((state) => state.comments)
 
   const {id} = useParams();
 
@@ -137,7 +135,6 @@ const GlobalStyle = createGlobalStyle`
 
 const StWrapper = styled.div`
   width: 100%;
-  /* height: 100vh; */
   margin-top: 40px;
   display: flex;
   flex-direction: column;

@@ -68,9 +68,7 @@ const Post = () => {
 
     const addpost = async (newList) => {
       console.log(newList)
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `${response.headers.authorization}`;
+
       let response = await axios.post("https://01192mg.shop/api/auth/posts", newList, {
         headers: {
           "Authorization" : getCookieToken(),
@@ -87,7 +85,6 @@ const Post = () => {
   return (
     <>
       <GlobalStyle />
-      {/* Introuduce */}
     
 
       <StWrapper>
