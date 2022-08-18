@@ -34,6 +34,7 @@ const Header = ({user}) => {
                 <Button variant="contained" color="success" onClick={() => {
                   removeCookieToken()
                   navigate('/')
+                  window.location.reload()
                 }} >
                 LOGOUT
                 </Button>

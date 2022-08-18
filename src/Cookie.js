@@ -39,4 +39,3 @@ export const getRefreshToken = () => {
 export const removeCookieToken = () => {
   alert('로그아웃되었습니다')
   return cookies.remove("user_token", { sameSite: "strict", path: "/"} )
-}

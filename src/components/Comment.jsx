@@ -7,6 +7,7 @@ import { getDetailComments } from '../redux/modules/commentSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { addCommentList } from '../redux/modules/commentSlice';
+
 import EachComment from './EachComment';
 
 const Comment = () => {
@@ -16,6 +17,7 @@ const Comment = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
  
+
   const inputComment = (e) => {
     setValue(e.target.value)
   }
@@ -23,6 +25,7 @@ const Comment = () => {
   useEffect(() => { 
     dispatch(getDetailComments(id))
   }, [])
+
 
 
   const addComment = async () => {
@@ -33,13 +36,28 @@ const Comment = () => {
       content: value,
     }
 
+
     dispatch(addCommentList(newList))
   }
+  
+  let commentText;
+  if (cookie) { 
+      commentText =   <StBox2>
+    <Box sx={{ width: 350, maxWidth: '100%', }}>
+      <TextField fullWidth label="comment" id="fullWidth" value={value} onChange={inputComment} />
+    </Box>
+    <Button variant="contained" onClick={addComment} style={{ backgroundColor: '#c95f19' }} sx={{ ml: 3 }}>SUBMIT</Button>
+  </StBox2>
+ }
+
+
+
   
 
   return (
       <>
       <StBox1>
+
         {comments.data && comments.data.map(
           (comment,idx) => <EachComment comment={comment} key={idx}/>
          )} 
@@ -51,6 +69,7 @@ const Comment = () => {
           </Box>
           <Button variant="contained" onClick={addComment} style={{ backgroundColor: '#c95f19' }} sx={{ ml: 3 }}>SUBMIT</Button>
         </StBox2>
+
       </>
     )
   }
