@@ -46,7 +46,7 @@ const Post = () => {
     reader.onloadend = () => {
       setImageUrl(reader.result);
       setImgFile(file)
-      
+      console.log(reader.result)
     };
   }
 
@@ -58,7 +58,6 @@ const Post = () => {
       price,
       file: imageUrl
     }
-    console.log(obj)
     addpost(obj)
     alert('등록완료!')
     navigate('/');

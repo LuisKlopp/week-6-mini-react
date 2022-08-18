@@ -76,8 +76,17 @@ const Main = () => {
 }
   
 
+// {dummyData.filter((val) =>{
+//   if(searchTerm == ""){
+//     return val
+//   }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
+//     return val
+//   }
+// }
+// }).map(data =>{
+//   return <p>dummyData.title</p>
+// })}
 
-  
   
   
   export default Main;
