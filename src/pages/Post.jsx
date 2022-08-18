@@ -51,7 +51,7 @@ const Post = () => {
   }
 
   const onSubmit =  () =>  {
-
+    if(title ==='' || content ==='' ||price === '') return alert('빈칸을 채워주세요!')
     const obj = {
       title,
       content,
@@ -193,21 +193,6 @@ const StWrapper = styled.div`
   align-items: center;
 `;
 
-const IntroContainer = styled.div`
-  margin-top: 50px;
-  width: 100%;
-  height: 150px;
-  background-image: url(${dotImg});
-  position: relative;
-`
-const IntroBox = styled.div`
-  font-family: 'Cafe24Ohsquareair';
-  font-size: 30px;
-  line-height: 50px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-`
 
 const StInput = styled.input`
   width:80%;
@@ -229,9 +214,9 @@ const StContent = styled.div`
   width:300px;
   border: 2px solid #ececec;
   height: 300px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  margin-top: 0px;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -240,8 +225,9 @@ const StContent = styled.div`
 
 const StSpan = styled.div`
   font-weight:600;
-  font-size:24px ;
+  font-size:22px ;
   margin-bottom:10px;
+  font-family: 'Cafe24Ohsquareair';
   `
 
 // const StSpan_1 = styled.div`
@@ -252,7 +238,7 @@ const StPriceBox = styled.div`
   margin-left: 0px;
 `
 const StPrice = styled.div`
-  /* padding: 1rem; */
+  font-family: 'Cafe24Ohsquareair';
   font-weight:600;
   display: flex;
   justify-content: center;
@@ -263,8 +249,7 @@ const StPrice = styled.div`
 const PriceSpan = styled.div`
   font-weight: 500;
   font-size: 24px;
-  margin:0px 20px 0px 20px
-
+  margin:0px 20px 0px 20px;
 `
 
 const StSubmitButton = styled.div`

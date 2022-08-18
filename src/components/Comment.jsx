@@ -7,13 +7,14 @@ import { getDetailComments } from '../redux/modules/commentSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { addCommentList } from '../redux/modules/commentSlice';
-
+import { getCookieToken } from '../Cookie'
 import EachComment from './EachComment';
 
 const Comment = () => {
 
   const [value, setValue] = useState('')
   const { comments } = useSelector((state) => state.comments)
+  const cookie = getCookieToken();
   const dispatch = useDispatch();
   const { id } = useParams();
  
@@ -42,7 +43,8 @@ const Comment = () => {
   
   let commentText;
   if (cookie) { 
-      commentText =   <StBox2>
+    commentText =
+      <StBox2>
     <Box sx={{ width: 350, maxWidth: '100%', }}>
       <TextField fullWidth label="comment" id="fullWidth" value={value} onChange={inputComment} />
     </Box>
@@ -62,13 +64,8 @@ const Comment = () => {
           (comment,idx) => <EachComment comment={comment} key={idx}/>
          )} 
         </StBox1> 
+        {commentText}
 
-        <StBox2>
-          <Box sx={{ width: 350, maxWidth: '100%', }}>
-            <TextField fullWidth label="comment" id="fullWidth" value={value} onChange={inputComment} />
-          </Box>
-          <Button variant="contained" onClick={addComment} style={{ backgroundColor: '#c95f19' }} sx={{ ml: 3 }}>SUBMIT</Button>
-        </StBox2>
 
       </>
     )
@@ -95,4 +92,3 @@ const StBox2 = styled.div`
   margin-bottom:30px;
   background-color: white;
 `
-

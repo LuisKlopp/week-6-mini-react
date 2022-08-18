@@ -50,14 +50,14 @@ export default function StuffCard({stuff, id}) {
         height="194"
         // image={stuff.image}
         // alt="Paella dish"
-        style={{cursor:'pointer', backgroundImage: `url("${stuff.image_url}")`, backgroundSize:'230px 190px'}}
+        style={{cursor:'pointer', backgroundImage: `url("${stuff.imageUrl}")`, backgroundSize:'230px 190px'}}
         onClick={() => {
           navigate(`/detail/${stuff.id}`)
         }}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {stuff.content}
+        <Typography variant="body2" color="text.secondary" sx={{fontSize:'20px'}}>
+          {stuff.content.length > 20 ? stuff.content.slice(0,20)+'...' :stuff.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

@@ -217,7 +217,7 @@ const SignUp = () => {
                   중복확인
                   </Button>
                 </InputAndButton>
-                <div>{idConfirm ? null : <div style={{color:'green', fontSize:'14px', marginLeft:'10px'}}>이메일형식으로 입력해주세요</div>}</div>
+                <div>{idConfirm ? null : <div style={{color:'green', fontSize:'14px', marginLeft:'10px'}}>3글자 이상 입력해주세요</div>}</div>
                 <InputAndButton>
                   <TextField
                     sx={{ mt: 3, }}

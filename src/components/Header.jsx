@@ -12,9 +12,9 @@ import UseGetUser from "../hooks/UseGetUser";
 const Header = ({user}) => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
+  const id = pathname.slice(-1)
 
   const cookie = getCookieToken();
-  
 
   
 
@@ -40,11 +40,12 @@ const Header = ({user}) => {
                 </Button>
               </div>
               :
-            <Button variant="contained" color="success" onClick={() => {
+              <Button variant="contained" color="success" onClick={() => {
+                console.log(pathname)
               if (pathname === '/') {
                   navigate('/login');
-                } else if (pathname === '/detail') {
-                  navigate('/detail/login');
+              } else if (pathname === `/detail/${id}`) {
+                  navigate(`/detail/${id}/login`);
                 } 
               }}>LOGIN
               </Button>
